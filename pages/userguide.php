@@ -1,6 +1,6 @@
-<?php require(DRAC_ROOT . '/main/html_helpers.php'); ?>
-<?php require(DRAC_ROOT . '/calculator/inputs.php'); ?>
-<?php require(DRAC_ROOT . '/calculator/outputs.php'); ?>
+<?php require_once(DRAC_ROOT . '/main/html_helpers.php'); ?>
+<?php require_once(DRAC_ROOT . '/calculator/inputs.php'); ?>
+<?php require_once(DRAC_ROOT . '/calculator/outputs.php'); ?>
 
 <h1>DRAC &mdash; User Guide</h1>
 
