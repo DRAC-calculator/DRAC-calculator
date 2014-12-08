@@ -1,0 +1,80 @@
+
+.drac_content li {
+	margin-top: 6px;
+	margin-bottom: 6px;
+}
+
+.drac_content table {
+    /*border: 1px solid #DCDCDC;*/
+}
+
+.drac_content th,
+.drac_content td {
+	padding-top: 4px;
+	padding-bottom: 4px;
+}
+
+
+.drac_field_error {
+	color: #c01;
+	margin: 5px 0 0;
+	display: block;
+	font-weight: bold;
+}
+form .drac_field_error  {
+	font-weight: normal;
+}
+
+ul.drac_nav {
+	list-style: none;
+	margin-left: 0;
+	padding-left: 0;
+}
+.drac_nav li {
+	display: inline;
+	border-left: 1px solid #56318e;
+	padding: 0 8px 0 10px;
+	margin: 0;
+}
+.drac_nav li:first-child {
+	border-left: 0;
+	padding-left: 0;
+}
+.drac_nav a.current {
+	font-weight: bold;
+}
+
+#drac_data_table {
+	width: 100%;
+	margin-left: 0;
+	margin-right: 0;
+}
+.drac_data_actions {
+	text-align: left;
+    margin-top: -30px;
+    margin-left: 10px;
+}
+#drac_data_submit {
+	margin-right: 10px;
+	float:right;
+	font-weight: bold;
+}
+
+.drac_values_table th {
+ 	border: 1px solid #DCDCDC;
+}
+.drac_values_table td {
+	background: #fff;
+ 	border: 1px solid #DCDCDC;
+}
+table.drac_values_table tbody td:last-of-type {
+ 	border: 1px solid #DCDCDC;
+}
+
+.drac_img_row {
+  float: none;
+  vertical-align: middle;
+  padding-right: 20px;
+  padding-bottom: 20px;
+}
+
