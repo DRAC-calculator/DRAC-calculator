@@ -10,9 +10,9 @@
 
 <?php require(DRAC_ROOT . '/main/form.php'); ?>
 
-<p>DRAC v<?php echo DRAC_VERSION; ?></p> (release date month 2014)
+<p>DRAC v<?php echo DRAC_VERSION; ?></p> Release date: March 2015
 <p>DRAC source code is available at <a href="https://github.com/DRAC-calculator/DRAC-calculator">DRAC-calculator</a></p>
 
 <p>
-	Disclaimer: DRAC has been checked and tested extensively to ensure a mathematically correct Ḋ calculation. With the information contained on this website, in the accompanying journal article and in the open access source code, it is intended that the calculation process is clear and transparent. It is the responsibility of the user to ensure that they are satisfied with this calculation process and that their data input is accurate. A significant amount of time, care and attention has been dedicated to the construction of DRAC, however we as authors are not responsible for miscalculation as a result of the use of this calculator. 
+	Disclaimer: DRAC has been checked and tested extensively to ensure a mathematically correct Ḋ calculation. With the information contained on this website, in the accompanying journal article and in the open access source code, it is intended that the calculation process is clear and transparent. It is the responsibility of the user to ensure that they are satisfied with this calculation process and that their data input is accurate. A significant amount of time, care and attention has been dedicated to the construction of DRAC, however we as authors are not responsible for miscalculation as a result of the use of this calculator.
 </p>

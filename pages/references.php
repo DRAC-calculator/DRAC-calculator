@@ -4,7 +4,7 @@
 
 <?php echo drac_menu_html(); ?>
 
-<p>Full details of DRAC calculator can be found in: </p>
+<p>Full details of the DRAC calculator can be found in: </p>
 
 <p>Durcan, J.A., King, G.E., Duller, G.A.T., submitted. DRAC: Dose rate and age calculator for trapped charge dating. Quaternary Geochronology</p>
 
