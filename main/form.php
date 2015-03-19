@@ -24,6 +24,6 @@
     </form>
 
     <p class="drac_data_actions">
-        <button id="drac_load_example_data" title="Populate the fieds with some example data, overwriting the current content.">Load Exampe Data</button>
+        <button id="drac_load_example_data" title="Populate the fieds with some example data, overwriting the current content.">Load Example Data</button>
         <button id="drac_clear_data" title="Clear the data from the input fields.">Clear Data</button>
     </p>

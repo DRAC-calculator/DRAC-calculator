@@ -1,10 +1,11 @@
 
 <h3 id="table6">6) F, J and H parameters used for cosmic dose rate calculation</h3>
 <p>
-	From Prescott and Hutton, 1994, after Prescott and Stefan, 1982
+	From Prescott and Hutton, 1994, after Prescott and Stefan, 1982.
 </p>
+
 <table>
-	<?php 
+	<?php
 		global $drac_LT6;
 
 		$sets = array_keys( $drac_LT6 );

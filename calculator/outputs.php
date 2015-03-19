@@ -5,8 +5,8 @@ function drac_outputs() {
     // Common descriptions used across multiple items
     $external = 'The calculated external dose rates from the provided radionuclide concentrations and selected conversion factors.';
     $internal = 'The calculated internal dose rates from the provided radionuclide concentrations and selected conversion factors.';
-    $scaling_factor = 'The scaling factors of Aitken (1985) to correct the gamma dose rates of samples taken from with 0.3 m of the ground surface.';
-    $depth_scaled = 'The gamma dose rates and uncertainties corrected for shallow depth (>0.3 m).';
+    $scaling_factor = 'The scaling factors of Aitken (1985) used to correct gamma dose rates of samples taken from within 0.3 m of the ground surface.';
+    $depth_scaled = 'The gamma dose rates and uncertainties corrected for shallow depth (<0.3 m).';
     $infinite_matrix = 'The infinite matrix external and internal dose rates. Calculated either from the radionuclide concentrations and conversion factors or the user defined dose rates. These values are used as the basis for all subsequent calculations.';
     $alpha_grain_size_attn = 'The alpha grain size attenuation factors and uncertainties calculated from the selected dataset and for the specified grain size range. The value is calculated as the average of the attenuation factors for the two grain size extremes and the uncertainty is 50% of the range. If dose rates are calculated using radionuclide concentrations, they are attenuated individually. If a dose rate is provided by the user, it is attenuated using the combined attenuation factor.';
     $alpha_grain_size_abs = 'The alpha grain size absorption factors and uncertainties calculated from the selected dataset and for the specified grain size range. The value is calculated as the average of the attenuation factors for the two grain size extremes and the uncertainty is 50% of the range.';
@@ -232,7 +232,7 @@ function drac_outputs() {
             'name' => 'Internal δRb Ḋβ (Gy.ka-1)',
             'name_ascii' => 'Internal errRb betadoserate (Gy.ka-1)',
             'description' => $internal,
-            'value' => function($i){  
+            'value' => function($i){
                 if( !valid_blank( $i['TI:20'] ) && !valid_blank( $i['TI:21'] ) ) {
                     return lt1_convert_d( $i, 'Rbβ', 'TI:20', 'TI:21' );
                 }
@@ -759,7 +759,7 @@ function drac_outputs() {
             'name' => 'U-Alpha etch attenuation factor',
             'name_ascii' => 'U-Alpha etch attenuation factor',
             'description' => $alpha_etch_attn,
-            'value' => function($i){  return $i['TI:36'] > 0 ? lt4_factor( $i, 'U 1-φ(D)', "bell1980alpha" ) : 1; },  
+            'value' => function($i){  return $i['TI:36'] > 0 ? lt4_factor( $i, 'U 1-φ(D)', "bell1980alpha" ) : 1; },
         ),
         'TO:DF' =>  array(
             'name' => 'U-δAlpha Etch attenuation factor',
@@ -771,7 +771,7 @@ function drac_outputs() {
             'name' => 'Th-Alpha etch attenuation factor',
             'name_ascii' => 'Th-Alpha etch attenuation factor',
             'description' => $alpha_etch_attn,
-            'value' => function($i){  return $i['TI:36'] > 0 ? lt4_factor( $i, 'Th 1-φ(D)', "bell1980alpha" ) : 1; },  
+            'value' => function($i){  return $i['TI:36'] > 0 ? lt4_factor( $i, 'Th 1-φ(D)', "bell1980alpha" ) : 1; },
         ),
         'TO:DH' =>  array(
             'name' => 'Th-δAlpha etch attenuation factor',
@@ -783,7 +783,7 @@ function drac_outputs() {
             'name' => 'Compiled alpha etch attenuation factor',
             'name_ascii' => 'Compiled alpha etch attenuation factor',
             'description' => $alpha_etch_attn,
-            'value' => function($i){  return $i['TI:36'] > 0 ? lt4_factor( $i, 'Combined 1-φ(D)', "bell1980alpha" ) : 1; }, 
+            'value' => function($i){  return $i['TI:36'] > 0 ? lt4_factor( $i, 'Combined 1-φ(D)', "bell1980alpha" ) : 1; },
         ),
         'TO:DJ' =>  array(
             'name' => 'δCompiled alpha etch attenuation factor',
@@ -795,7 +795,7 @@ function drac_outputs() {
             'name' => 'U-Alpha etch absorption factor',
             'name_ascii' => 'U-Alpha etch absorption factor',
             'description' => $alpha_etch_abs,
-            'value' => function($i){  return $i['TI:36'] > 0 ? lt4_factor( $i, 'U φ(D)', "bell1980alpha" ) : 1; },  
+            'value' => function($i){  return $i['TI:36'] > 0 ? lt4_factor( $i, 'U φ(D)', "bell1980alpha" ) : 1; },
         ),
         'TO:DL' =>  array(
             'name' => 'U-δAlpha Etch absorption factor',
@@ -807,7 +807,7 @@ function drac_outputs() {
             'name' => 'Th-Alpha etch absorption factor',
             'name_ascii' => 'Th-Alpha etch absorption factor',
             'description' => $alpha_etch_abs,
-            'value' => function($i){  return $i['TI:36'] > 0 ? lt4_factor( $i, 'Th φ(D)', "bell1980alpha" ) : 1; },  
+            'value' => function($i){  return $i['TI:36'] > 0 ? lt4_factor( $i, 'Th φ(D)', "bell1980alpha" ) : 1; },
         ),
         'TO:DN' =>  array(
             'name' => 'Th-δAlpha etch absorption factor',
@@ -849,11 +849,11 @@ function drac_outputs() {
             'name' => 'Etch corrected user external δḊα (Gy.ka-1)',
             'name_ascii' => 'Etch corrected user external erralphadoserate (Gy.ka-1)',
             'description' => $alpha_etch_corrected,
-            'value' => function($i){  
+            'value' => function($i){
                 if( VALUE( $i, 'TO:BO' ) == 0 ) {
                     return 0;
                 } else {
-                    return factor_sqrt_sum_sqr_ratio( $i, 'TO:DS', 'TO:BP', 'TO:BO', 'TO:DJ', 'TO:DI' );  
+                    return factor_sqrt_sum_sqr_ratio( $i, 'TO:DS', 'TO:BP', 'TO:BO', 'TO:DJ', 'TO:DI' );
                 }
             },
         ),
@@ -861,7 +861,7 @@ function drac_outputs() {
             'name' => 'Etch corrected internal U Ḋα (Gy.ka-1)',
             'name_ascii' => 'Etch corrected internal U alphadoserate (Gy.ka-1)',
             'description' => $alpha_etch_corrected,
-            'value' => function($i){ 
+            'value' => function($i){
                 if( $i['TI:36'] == 0 ) {
                     return VALUE( $i, 'TO:BQ' );
                 } else {
@@ -879,7 +879,7 @@ function drac_outputs() {
                 } elseif( $i['TI:36'] == 0 ) {
                     return VALUE( $i, 'TO:BR' );
                 } else {
-                    return factor_sqrt_sum_sqr_ratio( $i, 'TO:DK', 'TO:BR', 'TO:BQ', 'TO:DL', 'TO:DK' );  
+                    return factor_sqrt_sum_sqr_ratio( $i, 'TO:DK', 'TO:BR', 'TO:BQ', 'TO:DL', 'TO:DK' );
                 }
             },
         ),
@@ -905,7 +905,7 @@ function drac_outputs() {
                 } elseif( $i['TI:36'] == 0 ) {
                     return VALUE( $i, 'TO:BT' );
                 } else {
-                    return factor_sqrt_sum_sqr_ratio( $i, 'TO:DM', 'TO:BT', 'TO:BS', 'TO:DN', 'TO:DM' );  
+                    return factor_sqrt_sum_sqr_ratio( $i, 'TO:DM', 'TO:BT', 'TO:BS', 'TO:DN', 'TO:DM' );
                 }
             },
         ),
@@ -913,7 +913,7 @@ function drac_outputs() {
             'name' => 'U-Beta etch attenuation factor',
             'name_ascii' => 'U-Beta etch attenuation factor',
             'description' => $beta_etch_attn,
-            'value' => function($i){  return $i['TI:36'] > 0 ? lt4_factor( $i, 'U 1-φ(D)', $i['TI:38'] ) : 1; },  
+            'value' => function($i){  return $i['TI:36'] > 0 ? lt4_factor( $i, 'U 1-φ(D)', $i['TI:38'] ) : 1; },
         ),
         'TO:DZ' =>  array(
             'name' => 'U-δBeta etch attenuation factor',
@@ -925,7 +925,7 @@ function drac_outputs() {
             'name' => 'Th-Beta etch attenuation factor',
             'name_ascii' => 'Th-Beta etch attenuation factor',
             'description' => $beta_etch_attn,
-            'value' => function($i){  return $i['TI:36'] > 0 ? lt4_factor( $i, 'Th 1-φ(D)', $i['TI:38'] ) : 1; },  
+            'value' => function($i){  return $i['TI:36'] > 0 ? lt4_factor( $i, 'Th 1-φ(D)', $i['TI:38'] ) : 1; },
         ),
         'TO:EB' =>  array(
             'name' => 'Th-δBeta etch attenuation factor',
@@ -937,7 +937,7 @@ function drac_outputs() {
             'name' => 'K-Beta etch attenuation factor',
             'name_ascii' => 'K-Beta etch attenuation factor',
             'description' => $beta_etch_attn,
-            'value' => function($i){  return $i['TI:36'] > 0 ? lt4_factor( $i, 'K 1-φ(D)', $i['TI:38'] ) : 1; },  
+            'value' => function($i){  return $i['TI:36'] > 0 ? lt4_factor( $i, 'K 1-φ(D)', $i['TI:38'] ) : 1; },
         ),
         'TO:ED' =>  array(
             'name' => 'K-δBeta etch attenuation factor',
@@ -949,7 +949,7 @@ function drac_outputs() {
             'name' => 'Compiled beta etch attenuation factor',
             'name_ascii' => 'Compiled beta etch attenuation factor',
             'description' => $beta_etch_attn,
-            'value' => function($i){  return $i['TI:36'] > 0 ? lt4_factor( $i, 'Combined 1-φ(D)', $i['TI:38'] ) : 1; },  
+            'value' => function($i){  return $i['TI:36'] > 0 ? lt4_factor( $i, 'Combined 1-φ(D)', $i['TI:38'] ) : 1; },
         ),
         'TO:EF' =>  array(
             'name' => 'δCompiled beta etch attenuation factor',
@@ -961,7 +961,7 @@ function drac_outputs() {
             'name' => 'U-Beta etch absorption factor',
             'name_ascii' => 'U-Beta etch absorption factor',
             'description' => $beta_etch_abs,
-            'value' => function($i){  return $i['TI:36'] > 0 ? lt4_factor( $i, 'U φ(D)', $i['TI:38'] ) : 1; },  
+            'value' => function($i){  return $i['TI:36'] > 0 ? lt4_factor( $i, 'U φ(D)', $i['TI:38'] ) : 1; },
         ),
         'TO:EH' =>  array(
             'name' => 'U-δBeta etch absorption factor',
@@ -973,7 +973,7 @@ function drac_outputs() {
             'name' => 'Th-Beta etch absorption factor',
             'name_ascii' => 'Th-Beta etch absorption factor',
             'description' => $beta_etch_abs,
-            'value' => function($i){  return $i['TI:36'] > 0 ? lt4_factor( $i, 'Th φ(D)', $i['TI:38'] ) : 1; },  
+            'value' => function($i){  return $i['TI:36'] > 0 ? lt4_factor( $i, 'Th φ(D)', $i['TI:38'] ) : 1; },
         ),
         'TO:EJ' =>  array(
             'name' => 'Th-δBeta etch absorption factor',
@@ -985,7 +985,7 @@ function drac_outputs() {
             'name' => 'K-Beta etch absorption factor',
             'name_ascii' => 'K-Beta etch absorption factor',
             'description' => $beta_etch_abs,
-            'value' => function($i){  return $i['TI:36'] > 0 ? lt4_factor( $i, 'K φ(D)', $i['TI:38'] ) : 1; },  
+            'value' => function($i){  return $i['TI:36'] > 0 ? lt4_factor( $i, 'K φ(D)', $i['TI:38'] ) : 1; },
         ),
         'TO:EL' =>  array(
             'name' => 'K-δBeta etch absorption factor',
@@ -1007,7 +1007,7 @@ function drac_outputs() {
                 if( $i['TI:41'] == 0 ) {
                     return 0;
                 } else {
-                    return factor_sqrt_sum_sqr_ratio( $i, 'TO:EM', 'TO:CN', 'TO:CM', 'TO:DZ', 'TO:DY' );  
+                    return factor_sqrt_sum_sqr_ratio( $i, 'TO:EM', 'TO:CN', 'TO:CM', 'TO:DZ', 'TO:DY' );
                 }
             },
         ),
@@ -1025,7 +1025,7 @@ function drac_outputs() {
                 if( $i['TI:41'] == 0 ) {
                     return 0;
                 } else {
-                    return factor_sqrt_sum_sqr_ratio( $i, 'TO:EO', 'TO:CP', 'TO:CO', 'TO:EB', 'TO:EA' );  
+                    return factor_sqrt_sum_sqr_ratio( $i, 'TO:EO', 'TO:CP', 'TO:CO', 'TO:EB', 'TO:EA' );
                 }
             },
         ),
@@ -1203,7 +1203,7 @@ function drac_outputs() {
             'name' => 'External Dry Ḋα (Gy.ka-1)',
             'name_ascii' => 'External Dry alphadoserate (Gy.ka-1)',
             'description' => $external_dry,
-            'value' => function($i){  
+            'value' => function($i){
                 if (VALUE( $i, 'TO:FE') > 0) {
                     return VALUE( $i, 'TO:FE');
                 } else {
@@ -1294,7 +1294,7 @@ function drac_outputs() {
                 if( VALUE( $i, 'TO:FS' ) == 0 ) {
                     return 0;
                 } else {
-                    return VALUE( $i, 'TO:FS' ) * sqrt_sum_sqrs( 
+                    return VALUE( $i, 'TO:FS' ) * sqrt_sum_sqrs(
                         VALUE( $i, 'TO:FN' ) / VALUE( $i, 'TO:FM' ),
                         ( LT5( 'Beta' ) * $i['TI:42'] / 100.0 ) / ( 1 + LT5( 'Beta' ) * ( $i['TI:41'] / 100.0 ) )
                     );
@@ -1315,7 +1315,7 @@ function drac_outputs() {
                 if( VALUE( $i, 'TO:FU' ) == 0 ) {
                     return 0;
                 } else {
-                    return VALUE( $i, 'TO:FU' ) * sqrt_sum_sqrs( 
+                    return VALUE( $i, 'TO:FU' ) * sqrt_sum_sqrs(
                         VALUE( $i, 'TO:FP' ) / VALUE( $i, 'TO:FO' ),
                         ( LT5( 'Gamma' ) * $i['TI:42'] / 100.0 ) / ( 1 + LT5( 'Gamma' ) * ( $i['TI:41'] / 100.0 ) )
                     );
@@ -1423,7 +1423,7 @@ function drac_outputs() {
             'name' => 'δḊc (Gy.ka-1)',
             'name_ascii' => 'errCosmicdoserate (Gy.ka-1)',
             'description' => 'The calculated or user defined cosmic dose rate used in final environmental dose rate calculation.',
-            'value' => function($i){  
+            'value' => function($i){
                 if( !valid_blank( $i['TI:51'] ) ) {
                     return $i['TI:51'];
                 } else {
@@ -1481,7 +1481,7 @@ function drac_outputs() {
             'name' => 'δAge (ka)',
             'name_ascii' => 'errAge (ka)',
             'description' => 'Age, if De is provided, calculated using the DRAC determined dose rate.',
-            'value' => function($i){  
+            'value' => function($i){
                 return factor_sqrt_sum_sqr_ratio( $i, 'TO:GO', 'TO:GN', 'TO:GM', 'TI:53', 'TI:52' );  },
         ),
 

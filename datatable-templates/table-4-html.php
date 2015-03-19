@@ -1,18 +1,18 @@
 
-<h3 id="table4">4) Table4</h3>
+<h3 id="table4">4) Etch depth attenuation factors</h3>
 <table>
-	<?php 
+	<?php
 		global $drac_LT4;
 		$sets = array_keys( $drac_LT4 );
 		$params = array_keys( $drac_LT4[$sets[0]] );
 		$etchs = array_keys( $drac_LT4[$sets[0]][$params[0]] );
 
-		$names_pres = array( 
+		$names_pres = array(
 			"bell1979" => "Bell1979 Beta",
 			"brennan2003" => "Brennan2003 Beta",
 			"bell1980alpha" => "Bell1980 Alpha",
 		);
-	
+
 		foreach($sets as $set) {
 			echo '<thead>';
 			echo '<tr>';

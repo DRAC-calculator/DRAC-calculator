@@ -1,20 +1,20 @@
 
-<h3 id="table3">3) Grain size attenuation beta</h3>
+<h3 id="table3">3) Grain size attenuation factors - beta</h3>
 <table>
-	<?php 
+	<?php
 		global $drac_LT3;
 		$sets = array_keys( $drac_LT3 );
 		$params = array_keys( $drac_LT3[$sets[0]] );
 		$grains = array_keys( $drac_LT3[$sets[0]][$params[0]] );
 
-		$names_pres = array( 
+		$names_pres = array(
 			"mejdahl1979" => "Mejdahl1979",
 			"brennan2003" => "Brennan2003",
 			"guerinetal2012-q" => "GuerinEtAl2012-Q",
 			"guerinetal2012-f" => "GuerinEtAl2012-F",
 			"readhead2002" => "Readhead2002",
 		);
-	
+
 		foreach($sets as $set) {
 			echo '<thead>';
 			echo '<tr>';

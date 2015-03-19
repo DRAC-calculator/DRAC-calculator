@@ -1,15 +1,15 @@
-<h3 id="table2">2) Grain size attenuation alpha</h3>
+<h3 id="table2">2) Grain size attenuation factors - alpha</h3>
 <table>
-	<?php 
+	<?php
 		global $drac_LT2;
 		$sets = array_keys( $drac_LT2 );
 		$params = array_keys( $drac_LT2[$sets[0]] );
 		$grains = array_keys( $drac_LT2[$sets[0]][$params[0]] );
 
-		$names_pres = array( 
-			'brennanetal1991' => 'Brennanetal1991', 
-			'bell1980' => 'Bell1980', 
-		);	
+		$names_pres = array(
+			'brennanetal1991' => 'Brennanetal1991',
+			'bell1980' => 'Bell1980',
+		);
 
 		foreach($sets as $set) {
 			echo '<thead>';

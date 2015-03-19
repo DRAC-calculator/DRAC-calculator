@@ -1,11 +1,11 @@
 
-<h3 id="table5">5) Water Attenuation Factors</h3>
+<h3 id="table5">5) Water attenuation factors</h3>
 <p>
 	From Aitken and Zie, 1990.
 </p>
 
 <table>
-	<?php 
+	<?php
 		global $drac_LT5;
 		foreach($drac_LT5 as $key => $value) {
 			echo '<tr>';
@@ -16,4 +16,3 @@
 	?>
 </table>
 <p><a href="?show=datatabledownload&amp;datatableid=5">Download CSV</a> <a href="#" style="float: right;">↑ Back to top</a></p>
-

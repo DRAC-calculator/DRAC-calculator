@@ -1,7 +1,11 @@
 
-<h3 id="table7">7) Table7</h3>
+<h3 id="table7">7) Gamma dose scaling factors</h3>
+<p>
+	From Aitken, 1985.
+</p>
+
 <table>
-	<?php 
+	<?php
 		global $drac_LT7;
 
 		$sets = array_keys( $drac_LT7 );

@@ -52,7 +52,7 @@ function drac_inputs() {
             'validate' => function($val){ return greater_or_equal_to(0, $val); },
             'required' => false,
             'type' => 'float',
-        ),  
+        ),
         'TI:6' => array(
             'name' => 'External δU (ppm)',
             'name_ascii' => 'errExternal U (ppm)',
@@ -256,7 +256,7 @@ function drac_inputs() {
         'TI:31' => array(
             'name' => 'Scale Ḋγ at shallow depths?',
             'name_ascii' => 'Scale gammadoserate at shallow depths?',
-            'description' => 'Users may choose to scale gamma dose rates for samples taken less than 0.3 m below the ground surface. The scaling factors of Aitken (1985) are used. Input should be yes “Y” or no “N”.',
+            'description' => 'Users may choose to scale gamma dose rates for samples taken within 0.3 m of the ground surface. The scaling factors of Aitken (1985) are used. Input should be yes “Y” or no “N”.',
             'validate' => function($val){ return in_array(strtoupper($val), array("Y","N")); },
             'required' => false,
             'type' => 'string',
@@ -288,7 +288,7 @@ function drac_inputs() {
         'TI:35' => array(
             'name' => 'β-Grain size attenuation factors',
             'name_ascii' => 'beta-Grain size attenuation ',
-            'description' => 'The grain size attenuation factors for the beta dose rate. Users have the option of datasets from Mejdahl (1979), Brennan (2003), Guerin et al. (2012) for quartz or feldspar. Input must be “Mejdahl1979”, “Brennan2003”, “Guerinetal2012-Q” or “Guerinetal2012-F” .',
+            'description' => 'The grain size attenuation factors for the beta dose rate. Users have the option of datasets from Mejdahl (1979), Brennan (2003) and Guerin et al. (2012) for quartz or feldspar. Input must be “Mejdahl1979”, “Brennan2003”, “Guerinetal2012-Q” or “Guerinetal2012-F” .',
             'validate' => function($val){ return in_array(strtolower($val), array("mejdahl1979","brennan2003","guerinetal2012-q","guerinetal2012-f")); },
             'required' => true,
             'type' => 'string',
@@ -300,7 +300,7 @@ function drac_inputs() {
             'validate' => function($val){ return within_range(0, 30, $val); },
             'required' => true,
             'type' => 'float',
-        ),       
+        ),
         'TI:37' => array(
             'name' => 'Etch depth max (µm)',
             'name_ascii' => 'Etch depth max (microns)',
@@ -384,7 +384,7 @@ function drac_inputs() {
         'TI:47' => array(
             'name' => 'Latitude (decimal degrees)',
             'name_ascii' => 'Latitude (decimal degrees)',
-            'description' => 'Latitude and longitude of sample location (in degree decimals). Sample location latitude and longitude. Northern latitudes are positive and southern latitudes are negative. Eastern longitudes are positive and western longitudes are negative. Inputs should range from – 90 to 90° for latitudes and -180 to 180° for longitude.',
+            'description' => 'Latitude and longitude of sample location (in degree decimals). Positive values should be used for northern latitudes and eastern longitudes and negative values for south latitudes and western longitudes. Inputs should range from – 90 to 90° for latitudes and -180 to 180° for longitude.',
             'validate' => function($val){ return within_range(-90, 90, $val); },
             'required' => false,
             'type' => 'float',
@@ -392,7 +392,7 @@ function drac_inputs() {
         'TI:48' => array(
             'name' => 'Longitude (decimal degrees)',
             'name_ascii' => 'Longitude (decimal degrees)',
-            'description' => 'Latitude and longitude of sample location (in degree decimals). Sample location latitude and longitude. Northern latitudes are positive and southern latitudes are negative. Eastern longitudes are positive and western longitudes are negative. Inputs should range from – 90 to 90° for latitudes and -180 to 180° for longitude.',
+            'description' => 'Latitude and longitude of sample location (in degree decimals). Positive values should be used for northern latitudes and eastern longitudes and negative values for south latitudes and western longitudes. Inputs should range from – 90 to 90° for latitudes and -180 to 180° for longitude.',
             'validate' => function($val){ return within_range(-180, 180, $val); },
             'required' => false,
             'type' => 'float',

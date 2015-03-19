@@ -11,40 +11,40 @@
 <ol>
 	<li>
         Radionuclide conversion factors:
-        <a href="?show=datatables&amp;datatableid=1">View</a>, 
+        <a href="?show=datatables&amp;datatableid=1">View</a>,
         <a href="?show=datatabledownload&amp;datatableid=1">Download CSV</a>
     </li>
 	<li>
         Grain size attenuation factors for alpha dose rates:
-        <a href="?show=datatables&amp;datatableid=2">View</a>, 
+        <a href="?show=datatables&amp;datatableid=2">View</a>,
         <a href="?show=datatabledownload&amp;datatableid=2">Download CSV</a>
     </li>
 	<li>
         Grain size attenuation factors for beta dose rates:
-        <a href="?show=datatables&amp;datatableid=3">View</a>, 
+        <a href="?show=datatables&amp;datatableid=3">View</a>,
         <a href="?show=datatabledownload&amp;datatableid=3">Download CSV</a>
     </li>
 	<li>
         Etch depth attenuation factors:
-        <a href="?show=datatables&amp;datatableid=4">View</a>, 
+        <a href="?show=datatables&amp;datatableid=4">View</a>,
         <a href="?show=datatabledownload&amp;datatableid=4">Download CSV</a>
     </li>
 	<li>
         Water content attenuation factors:
-        <a href="?show=datatables&amp;datatableid=5">View</a>, 
+        <a href="?show=datatables&amp;datatableid=5">View</a>,
         <a href="?show=datatabledownload&amp;datatableid=5">Download CSV</a>
     </li>
 	<li>
         F, J and H parameters used for cosmic dose rate calculation:
-        <a href="?show=datatables&amp;datatableid=6">View</a>, 
+        <a href="?show=datatables&amp;datatableid=6">View</a>,
         <a href="?show=datatabledownload&amp;datatableid=6">Download CSV</a>
     </li>
     <li>
         Gamma dose scaling:
-        <a href="?show=datatables&amp;datatableid=7">View</a>, 
+        <a href="?show=datatables&amp;datatableid=7">View</a>,
         <a href="?show=datatabledownload&amp;datatableid=7">Download CSV</a>
     </li>
-	
+
 </ol>
 
 <?php
@@ -61,4 +61,3 @@
 <p>Full references for each of the datasets can be accessed via the <a href="<?php DRAC_URL ?>?show=references">References</a> page.</p>
 
 <p>We invite authors who calculate new and/or updated datasets for dose rate calculation to submit their datasets for use in DRAC. If you are interested, please contact us.</p>
-
