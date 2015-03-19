@@ -55,7 +55,7 @@ function lt1_convert_d($inputs, $param, $a, $b) {
         return 0;
     }
     $result = $scale * sqrt( pow( $du / $u, 2 ) + pow( $inputs[$b] / $inputs[$a], 2 ) );
-    return $result; 
+    return $result;
 }
 
 function lt2_factor($inputs, $type) {
@@ -101,10 +101,9 @@ function factor_sqrt_sum_sqr_ratio( $inputs, $a, $b, $c, $d, $e ) {
     if( VALUE( $inputs, $a ) == 0 ) {
         return 0;
     } else {
-        return VALUE( $inputs, $a ) * sqrt_sum_sqrs(
-            VALUE( $inputs, $b ) / VALUE( $inputs, $c ),
-            VALUE( $inputs, $d ) / VALUE( $inputs, $e )
-        );
+        $arg1 = ( VALUE( $inputs, $c ) == 0 ? 0 : VALUE( $inputs, $b ) / VALUE( $inputs, $c ) );
+        $arg2 = ( VALUE( $inputs, $e ) == 0 ? 0 : VALUE( $inputs, $d ) / VALUE( $inputs, $e ) );
+        return VALUE( $inputs, $a ) * sqrt_sum_sqrs( $arg1, $arg2 );
     }
 }
 
@@ -122,7 +121,7 @@ function VALUE( $inputs, $item ) {
         $is_output = (strpos( $item, 'TI:', 0 ) === false);
         if( $is_output ) {
             $drac_outputs = drac_outputs();
-            $f = $drac_outputs[$item]['value']; 
+            $f = $drac_outputs[$item]['value'];
             $value = $f( $inputs );
         } else {
             $value = $inputs[$item];

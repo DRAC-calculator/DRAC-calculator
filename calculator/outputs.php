@@ -130,9 +130,8 @@ function drac_outputs() {
             'value' => function($i) {
                 if( !valid_blank( $i['TI:11'] ) && !valid_blank( $i['TI:12'] ) ) {
                     return lt1_convert( $i, 'Rbβ', 'TI:11' );
-                }
-                else if( strtoupper( $i['TI:13'] ) == 'Y' ) {
-                    return lt1_convert( $i, 'Rbβ', 'TI:9' ) / 270.0;
+                } else if( strtoupper( $i['TI:13'] ) == 'Y' ) {
+                    return (-9.17 + (38.13 * VALUE( $i, 'TI:9' ))) * LT1( $i['TI:4'], 'Rbβ' );
                 } else {
                     return 0;
                 }
@@ -143,11 +142,12 @@ function drac_outputs() {
             'name_ascii' => 'External errRb betadoserate (Gy.ka-1)',
             'description' => $external,
             'value' => function($i){
-                if( !valid_blank( $i['TI:11'] ) && !valid_blank( $i['TI:12'] ) ) {
+                if ( VALUE( $i, 'TO:Q' ) == 0 ) {
+                  return 0;
+                } else if( !valid_blank( $i['TI:11'] ) && !valid_blank( $i['TI:12'] ) ) {
                     return lt1_convert_d( $i, 'Rbβ', 'TI:11', 'TI:12' );
-                }
-                else if( strtoupper( $i['TI:13'] ) == 'Y' ) {
-                    return lt1_convert_d( $i, 'Rbβ', 'TI:9', 'TI:10' ) / 270.0;
+                } else if( strtoupper( $i['TI:13'] ) == 'Y' ) {
+                    return lt1_convert_d( $i, 'Rbβ', 'TI:9', 'TI:10' );
                 } else {
                     return 0;
                 }
@@ -222,7 +222,7 @@ function drac_outputs() {
                     return lt1_convert( $i, 'Rbβ', 'TI:20' );
                 }
                 else if( strtoupper( $i['TI:22'] ) == 'Y' ) {
-                    return lt1_convert( $i, 'Rbβ', 'TI:18' ) / 270.0;
+                    return (-9.17 + (38.13 * VALUE( $i, 'TI:18' ))) * LT1( $i['TI:4'], 'Rbβ' );
                 } else {
                     return 0;
                 }
@@ -233,11 +233,13 @@ function drac_outputs() {
             'name_ascii' => 'Internal errRb betadoserate (Gy.ka-1)',
             'description' => $internal,
             'value' => function($i){
-                if( !valid_blank( $i['TI:20'] ) && !valid_blank( $i['TI:21'] ) ) {
+                if ( VALUE( $i, 'TO:AC' ) == 0 ) {
+                    return 0;
+                } else if( !valid_blank( $i['TI:20'] ) && !valid_blank( $i['TI:21'] ) ) {
                     return lt1_convert_d( $i, 'Rbβ', 'TI:20', 'TI:21' );
                 }
                 else if( strtoupper( $i['TI:22'] ) == 'Y' ) {
-                    return lt1_convert_d( $i, 'Rbβ', 'TI:18', 'TI:19' ) / 270.0;
+                    return lt1_convert_d( $i, 'Rbβ', 'TI:18', 'TI:19' );
                 } else {
                     return 0;
                 }
