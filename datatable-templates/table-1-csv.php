@@ -1,9 +1,9 @@
-<?php 
+<?php
 	global $drac_LT1;
 	$names = array_keys( $drac_LT1 );
-	$names_pres = array( 
-		'liritzisetal2013' => 'Liritzisetal2013', 
-		'guerinetal2011' => 'Guerinetal2011', 
+	$names_pres = array(
+		'liritzisetal2013' => 'Liritzisetal2013',
+		'guerinetal2011' => 'Guerinetal2011',
 		'adamiecaitken1998' => 'AdamiecAitken1998',
 	);
 
@@ -44,6 +44,8 @@
 		foreach($names as $name) {
 			if( $param == "Rbβ" || $param == "δRbβ" ) {
 				echo $drac_LT1[$name][$param] .',';
+			} else if ( $param == "δUβ" || $param == "δUγ" || $param == "δThγ" ) {
+				echo round( $drac_LT1[$name][$param], 4) .',';
 			} else {
 				echo round( $drac_LT1[$name][$param], 3) .',';
 			}

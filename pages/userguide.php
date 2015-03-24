@@ -56,9 +56,9 @@
 					$desc_rowspan_count++;
 				}
 				if( $desc_rowspan_count > 1 ) {
-					echo '<td rowspan="' . $desc_rowspan_count . '">' . $input['description'] .'</td>';
+					echo '<td rowspan="' . $desc_rowspan_count . '">' . drac_format_table_html( $input['description'] ) .'</td>';
 				} else {
-					echo '<td>' . $input['description'] .'</td>';
+					echo '<td>' . drac_format_table_html( $input['description'] ) .'</td>';
 				}
 			}
 			echo '</tr>';
