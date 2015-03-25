@@ -1,4 +1,4 @@
-<?php  
+<?php
 
 function drac_menu_html() {
 	$current = empty($_GET['show']) ? '' : $_GET['show'];
@@ -12,14 +12,14 @@ function drac_menu_html() {
     $html .= '</ul>';
     return $html;
 }
-      
+
 function drac_field_error_html($error_message) {
 	$html = '<div class="drac_field_error">';
-	$html .= str_replace("\n", "<br>", $error_message);
+	$html .= str_replace( "\n", "<br>", drac_format_table_html( $error_message ) );
 	$html .= '</div>';
 	return $html;
 }
-      
+
 function drac_format_table_html($html) {
     $html = str_replace( 'ka-1', 'ka<sup>-1</sup>', $html );
     $html = str_replace( 'cm-3', 'cm<sup>-3</sup>', $html );

@@ -86,7 +86,7 @@ function lt4_factor_d($inputs, $type, $set=null ) {
 }
 
 function lt7_factor($inputs, $type) {
-    if( ( strtoupper( $inputs['TI:13'] ) == 'N' ) || ( VALUE( $inputs, 'TI:43' ) > 0.3 ) ) {
+    if( ( strtoupper( $inputs['TI:13'] ) == 'N' ) || ( VALUE( $inputs, 'TI:43' ) > 0.3 ) || valid_blank( VALUE( $inputs, 'TI:43' ) ) ) {
         return 1;
     } else {
         $d = round( VALUE( $inputs, 'TI:43' ) * 2, 3) / 2 ;

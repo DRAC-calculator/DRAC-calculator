@@ -353,7 +353,18 @@ function drac_inputs() {
             'name' => 'Depth (m)',
             'name_ascii' => 'Depth (m)',
             'description' => 'Depth and uncertainty from which sample was extracted beneath the ground surface. Inputs should be 0 or positive and not left blank. If user defined Ḋc will be used then an "X" must be input.',
-            'validate' => function($val){ return greater_or_equal_to(0, $val); },
+            'validate' => function($val, $inputs){
+              if( greater_or_equal_to(0, $val) ) {
+                  foreach([49,50] as $i) {
+                      if( !valid_blank( $inputs[$i] ) ) {
+                        return false;
+                      }
+                  }
+                  return true;
+              } else {
+                  return false;
+              }
+            },
             'required' => false,
             'type' => 'float',
         ),
@@ -361,7 +372,18 @@ function drac_inputs() {
             'name' => 'δDepth (m)',
             'name_ascii' => 'errDepth (m)',
             'description' => 'Depth and uncertainty from which sample was extracted beneath the ground surface. Inputs should be 0 or positive and not left blank. If user defined Ḋc will be used then an "X" must be input.',
-            'validate' => function($val){ return greater_or_equal_to(0, $val); },
+            'validate' => function($val, $inputs){
+              if( greater_or_equal_to(0, $val) ) {
+                  foreach([49,50] as $i) {
+                      if( !valid_blank( $inputs[$i] ) ) {
+                        return false;
+                      }
+                  }
+                  return true;
+              } else {
+                  return false;
+              }
+            },
             'required' => false,
             'type' => 'float',
         ),
@@ -369,7 +391,18 @@ function drac_inputs() {
             'name' => 'Overburden density (g.cm-3)',
             'name_ascii' => 'Overburden density (g cm-3)',
             'description' => 'Density of the overlying sediment matrix from which the sample was taken. Inputs should be 0 or positive and not be left blank. If user defined Ḋc will be used then an "X" must be input.',
-            'validate' => function($val){ return greater_or_equal_to(0, $val); },
+            'validate' => function($val, $inputs){
+              if( greater_or_equal_to(0, $val) ) {
+                  foreach([49,50] as $i) {
+                      if( !valid_blank( $inputs[$i] ) ) {
+                        return false;
+                      }
+                  }
+                  return true;
+              } else {
+                  return false;
+              }
+            },
             'required' => false,
             'type' => 'float',
         ),
@@ -377,7 +410,18 @@ function drac_inputs() {
             'name' => 'δOverburden density (g.cm-3)',
             'name_ascii' => 'errOverburden density (g cm-3)',
             'description' => 'Density of the overlying sediment matrix from which the sample was taken. Inputs should be 0 or positive and not be left blank. If user defined Ḋc will be used then an "X" must be input.',
-            'validate' => function($val){ return greater_or_equal_to(0, $val); },
+            'validate' => function($val, $inputs){
+              if( greater_or_equal_to(0, $val) ) {
+                  foreach([49,50] as $i) {
+                      if( !valid_blank( $inputs[$i] ) ) {
+                        return false;
+                      }
+                  }
+                  return true;
+              } else {
+                  return false;
+              }
+            },
             'required' => false,
             'type' => 'float',
         ),
@@ -385,7 +429,18 @@ function drac_inputs() {
             'name' => 'Latitude (decimal degrees)',
             'name_ascii' => 'Latitude (decimal degrees)',
             'description' => 'Latitude and longitude of sample location (in degree decimals). Positive values should be used for northern latitudes and eastern longitudes and negative values for southern latitudes and western longitudes. Inputs should range from – 90 to 90° for latitudes and -180 to 180° for longitude. If user defined Ḋc will be used then an "X" must be input.',
-            'validate' => function($val){ return within_range(-90, 90, $val); },
+            'validate' => function($val, $inputs){
+              if( within_range(-90, 90, $val) ) {
+                  foreach([49,50] as $i) {
+                      if( !valid_blank( $inputs[$i] ) ) {
+                        return false;
+                      }
+                  }
+                  return true;
+              } else {
+                  return false;
+              }
+            },
             'required' => false,
             'type' => 'float',
         ),
@@ -393,7 +448,18 @@ function drac_inputs() {
             'name' => 'Longitude (decimal degrees)',
             'name_ascii' => 'Longitude (decimal degrees)',
             'description' => 'Latitude and longitude of sample location (in degree decimals). Positive values should be used for northern latitudes and eastern longitudes and negative values for southern latitudes and western longitudes. Inputs should range from – 90 to 90° for latitudes and -180 to 180° for longitude. If user defined Ḋc will be used then an "X" must be input.',
-            'validate' => function($val){ return within_range(-180, 180, $val); },
+            'validate' => function($val, $inputs){
+              if( within_range(-180, 180, $val) ) {
+                  foreach([49,50] as $i) {
+                      if( !valid_blank( $inputs[$i] ) ) {
+                        return false;
+                      }
+                  }
+                  return true;
+              } else {
+                  return false;
+              }
+            },
             'required' => false,
             'type' => 'float',
         ),
@@ -401,7 +467,18 @@ function drac_inputs() {
             'name' => 'Altitude (m asl)',
             'name_ascii' => 'Altitude (m)',
             'description' => 'Altitude of sample location in metres above sea level. Input should be less than 5000 and not left blank. If user defined Ḋc will be used then an "X" must be input.',
-            'validate' => function($val){ return less_than(5000, $val); },
+            'validate' => function($val, $inputs){
+              if( less_than(5000, $val) ) {
+                  foreach([49,50] as $i) {
+                      if( !valid_blank( $inputs[$i] ) ) {
+                        return false;
+                      }
+                  }
+                  return true;
+              } else {
+                  return false;
+              }
+            },
             'required' => false,
             'type' => 'float',
         ),

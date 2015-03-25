@@ -14,8 +14,8 @@ class Drac {
        $this->values['name'] = empty($params['name']) ? '' : trim($params['name']);
        $this->values['table'] = empty($params['table']) ? '' : trim($params['table']);
        $this->data = null;
-       
-       $filename =  str_replace(' ', '_', trim( $this->values['name'] )); 
+
+       $filename =  str_replace(' ', '_', trim( $this->values['name'] ));
        $this->output_file_name =  $filename . '_' . time() . '_DRACv' . DRAC_VERSION .'.csv';
     }
 
@@ -118,7 +118,7 @@ class Drac {
                     $is_output = (strpos( $t, 'TI:', 0 ) === false);
 
                     $value = VALUE( $input_row, $t );
-                    
+
                     // round values
                     if( $is_output && (floatval( $value ) == $value) && ($value != 0) ) {
                         $value = round( $value, 3 );
@@ -150,8 +150,8 @@ class Drac {
             $num_columns = drac_input_columns_count();
 
             $cols = explode(" ", $row);
-            if(count($cols) != $num_columns) { 
-                $errors .= "Row " . ($i + 1) . ": Expected " . $num_columns . " columns, found " . count($cols) . ".\n"; 
+            if(count($cols) != $num_columns) {
+                $errors .= "Row " . ($i + 1) . ": Expected " . $num_columns . " columns, found " . count($cols) . ".\n";
             }
 
             $data_row = array();
@@ -166,8 +166,8 @@ class Drac {
                 $properites = $this->drac_inputs($ti);
                 $validate_func = $properites['validate'];
 
-                if( !valid_blank_input($properites, $col) && !$validate_func($cols[$j]) ) {
-                    $errors .= 'Row ' . ($i + 1) . ', Column ' . ($j + 1) . ' (' . $ti . ' ' . $properites['name'] . ') Found "' . $col . '": ' . $properites['description'] . "\n"; 
+                if( !valid_blank_input($properites, $col) && !$validate_func($cols[$j], $cols) ) {
+                    $errors .= 'Row ' . ($i + 1) . ', Column ' . ($j + 1) . ' (' . $ti . ' ' . $properites['name'] . ') Found "' . $col . '": ' . $properites['description'] . "\n";
                 }
 
                 if( $properites['type'] == 'float' && !valid_blank_input($properites, $col) ) {
