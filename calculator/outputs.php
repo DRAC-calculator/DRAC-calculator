@@ -128,10 +128,10 @@ function drac_outputs() {
             'name_ascii' => 'External Rb betadoserate (Gy.ka-1)',
             'description' => $external,
             'value' => function($i) {
-                if( !valid_blank( $i['TI:11'] ) && !valid_blank( $i['TI:12'] ) ) {
-                    return lt1_convert( $i, 'Rbβ', 'TI:11' );
-                } else if( strtoupper( $i['TI:13'] ) == 'Y' ) {
+                if( strtoupper( $i['TI:13'] ) == 'Y' ) {
                     return (-9.17 + (38.13 * VALUE( $i, 'TI:9' ))) * LT1( $i['TI:4'], 'Rbβ' );
+                } else if( !valid_blank( $i['TI:11'] ) && !valid_blank( $i['TI:12'] ) ) {
+                    return lt1_convert( $i, 'Rbβ', 'TI:11' );
                 } else {
                     return 0;
                 }
@@ -144,10 +144,10 @@ function drac_outputs() {
             'value' => function($i){
                 if ( VALUE( $i, 'TO:Q' ) == 0 ) {
                   return 0;
-                } else if( !valid_blank( $i['TI:11'] ) && !valid_blank( $i['TI:12'] ) ) {
-                    return lt1_convert_d( $i, 'Rbβ', 'TI:11', 'TI:12' );
                 } else if( strtoupper( $i['TI:13'] ) == 'Y' ) {
-                    return lt1_convert_d( $i, 'Rbβ', 'TI:9', 'TI:10' );
+                    return lt1_convert_d( $i, 'Rbβ', 'TI:9', 'TI:10', VALUE( $i, 'TO:Q' ));
+                } else if( !valid_blank( $i['TI:11'] ) && !valid_blank( $i['TI:12'] ) ) {
+                    return lt1_convert_d( $i, 'Rbβ', 'TI:11', 'TI:12', VALUE( $i, 'TO:Q' ));
                 } else {
                     return 0;
                 }
@@ -236,10 +236,10 @@ function drac_outputs() {
                 if ( VALUE( $i, 'TO:AC' ) == 0 ) {
                     return 0;
                 } else if( !valid_blank( $i['TI:20'] ) && !valid_blank( $i['TI:21'] ) ) {
-                    return lt1_convert_d( $i, 'Rbβ', 'TI:20', 'TI:21' );
+                    return lt1_convert_d( $i, 'Rbβ', 'TI:20', 'TI:21', VALUE( $i, 'TO:AC' ) );
                 }
                 else if( strtoupper( $i['TI:22'] ) == 'Y' ) {
-                    return lt1_convert_d( $i, 'Rbβ', 'TI:18', 'TI:19' );
+                    return lt1_convert_d( $i, 'Rbβ', 'TI:18', 'TI:19', VALUE( $i, 'TO:AC' ) );
                 } else {
                     return 0;
                 }

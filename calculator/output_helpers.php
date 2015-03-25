@@ -47,12 +47,15 @@ function lt1_convert($inputs, $param, $a) {
     $result = $inputs[$a] * LT1( $inputs['TI:4'], $param );
     return $result;
 }
-function lt1_convert_d($inputs, $param, $a, $b) {
+function lt1_convert_d($inputs, $param, $a, $b, $scale=null) {
     $u = LT1( $inputs['TI:4'], $param );
     $du = LT1( $inputs['TI:4'], 'δ' . $param );
-    $scale = lt1_convert($inputs, $param, $a);
-    if ( $scale == 0 ) {
-        return 0;
+
+    if( $scale == null ){
+      $scale = lt1_convert($inputs, $param, $a);
+      if ( $scale == 0 ) {
+          return 0;
+      }
     }
     $result = $scale * sqrt( pow( $du / $u, 2 ) + pow( $inputs[$b] / $inputs[$a], 2 ) );
     return $result;
