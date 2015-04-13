@@ -20,3 +20,7 @@ Calculator files include:
 * `/calculator/drac.php` - Calculator setup code
 * `/calculator/lookup_tables.php` - Lookup table data
 
+
+## License
+
+DRAC Calculator is licensed under GPLv3. Further details can be found in the file LICENSE.
