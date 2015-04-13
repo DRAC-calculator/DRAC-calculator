@@ -129,7 +129,11 @@ function drac_outputs() {
             'description' => $external,
             'value' => function($i) {
                 if( strtoupper( $i['TI:13'] ) == 'Y' ) {
-                    return (-9.17 + (38.13 * VALUE( $i, 'TI:9' ))) * LT1( $i['TI:4'], 'Rbβ' );
+                    if ( $i['TI:9'] == 0 ) {
+                      return 0;
+                    } else {
+                      return (-9.17 + (38.13 * VALUE( $i, 'TI:9' ))) * LT1( $i['TI:4'], 'Rbβ' );
+                    }
                 } else if( !valid_blank( $i['TI:11'] ) && !valid_blank( $i['TI:12'] ) ) {
                     return lt1_convert( $i, 'Rbβ', 'TI:11' );
                 } else {
@@ -218,11 +222,14 @@ function drac_outputs() {
             'name_ascii' => 'Internal Rb betadoserate (Gy.ka-1)',
             'description' => $internal,
             'value' => function($i) {
-                if( !valid_blank( $i['TI:20'] ) && !valid_blank( $i['TI:21'] ) ) {
-                    return lt1_convert( $i, 'Rbβ', 'TI:20' );
-                }
-                else if( strtoupper( $i['TI:22'] ) == 'Y' ) {
+                if( strtoupper( $i['TI:22'] ) == 'Y' ) {
+                  if ( $i['TI:18'] == 0 ) {
+                    return 0;
+                  } else {
                     return (-9.17 + (38.13 * VALUE( $i, 'TI:18' ))) * LT1( $i['TI:4'], 'Rbβ' );
+                  }
+                } else if( !valid_blank( $i['TI:20'] ) && !valid_blank( $i['TI:21'] ) ) {
+                    return lt1_convert( $i, 'Rbβ', 'TI:20' );
                 } else {
                     return 0;
                 }
