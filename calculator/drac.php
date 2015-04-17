@@ -77,9 +77,9 @@ class Drac {
 
         $output .= "DRAC " . DRAC_VERSION . " output\n";
         $output .= "\n";
-        $output .= "Full details of the inputs required for a DRAC dose rate calculation and the calculation process can be found in the paper XXXX and the DRAC website XXXX.\n";
+        $output .= "Full details of the inputs required for a DRAC dose rate calculation and the calculation process can be found in the paper by Durcan et al. (2015) and the DRAC website www.aber.ac.uk/alrl/drac.\n";
         $output .= "\n";
-        $output .= "\"Please cite all uses of DRAC, including the version number, as Durcan, J.A., King, G.E., and Duller, G.A.T., 2015. DRAC: Dose rate and age calculator for trapped charge dating. Quaternary Geochronology, XX, XX-XX. Corresponding authors: Julie Durcan (julie.durcan@ouce.ox.ac.uk) and Georgina King (georgina.king@unil.ch).\"\n";
+        $output .= "\"Please cite all uses of DRAC, including the version number, as Durcan, J.A., King, G.E., and Duller, G.A.T., 2015. DRAC: Dose rate and age calculator for trapped charge dating. Quaternary Geochronology, 28, 54-61. Corresponding authors: Julie Durcan (julie.durcan@ouce.ox.ac.uk) and Georgina King (georgina.king@unil.ch).\"\n";
         $output .= "\n";
         $output .= "DRAC Highlights,,,,,,,,,,,,,,,,,,,,,,,,,,,DRAC Inputs,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,DRAC Outputs\n";
         $output .= "\n";
