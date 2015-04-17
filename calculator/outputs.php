@@ -329,7 +329,7 @@ function drac_outputs() {
             'name_ascii' => 'External infinite matrix alphadoserate (Gy.ka-1)',
             'description' => $infinite_matrix,
             'value' => function($i){
-                if ( !valid_blank( $i['TI:23'] ) ) {
+                if ( !valid_blank( $i['TI:23'] ) && $i['TI:23'] != 0 ) {
                     return $i['TI:23'];
                 } else {
                     return array_sum( VALUES( $i, 'TO:A','TO:G' ) );
@@ -341,7 +341,7 @@ function drac_outputs() {
             'name_ascii' => 'External infinite matrix erralphadoserate (Gy.ka-1)',
             'description' => $infinite_matrix,
             'value' => function($i){
-                if ( !valid_blank( $i['TI:24'] ) ) {
+                if ( !valid_blank( $i['TI:24'] ) && $i['TI:24'] != 0 ) {
                     return $i['TI:24'];
                 } else {
                     return sqrt( array_sum( array_map( function($v){ return pow( $v, 2); }, VALUES( $i, 'TO:B','TO:H' ) ) ) );
@@ -353,7 +353,7 @@ function drac_outputs() {
             'name_ascii' => 'External infinite matrix betadoserate (Gy.ka-1)',
             'description' => $infinite_matrix,
             'value' => function($i){
-                if ( !valid_blank( $i['TI:25'] ) ) {
+                if ( !valid_blank( $i['TI:25'] ) && $i['TI:25'] != 0 ) {
                     return $i['TI:25'];
                 } else {
                     return array_sum( VALUES( $i, 'TO:C','TO:I','TO:M','TO:Q' ) );
@@ -365,7 +365,7 @@ function drac_outputs() {
             'name_ascii' => 'External infinite matrix errbetadoserate (Gy.ka-1)',
             'description' => $infinite_matrix,
             'value' => function($i){
-                if ( !valid_blank( $i['TI:26'] ) ) {
+                if ( !valid_blank( $i['TI:26'] ) && $i['TI:26'] != 0 ) {
                     return $i['TI:26'];
                 } else {
                     return sqrt( array_sum( array_map( function($v){ return pow( $v, 2); }, VALUES( $i, 'TO:D','TO:J','TO:N','TO:R' ) ) ) );
@@ -377,7 +377,7 @@ function drac_outputs() {
             'name_ascii' => 'External infinite matrix gammadoserate (Gy.ka-1)',
             'description' => $infinite_matrix,
             'value' => function($i){
-                if ( !valid_blank( $i['TI:27'] ) ) {
+                if ( !valid_blank( $i['TI:27'] ) && $i['TI:27'] != 0 ) {
                     return $i['TI:27'];
                 } else {
                     return array_sum( VALUES( $i, 'TO:E','TO:K','TO:O' ) );
@@ -389,7 +389,7 @@ function drac_outputs() {
             'name_ascii' => 'External infinite matrix errgammadoserate (Gy.ka-1)',
             'description' => $infinite_matrix,
             'value' => function($i){
-                if ( !valid_blank( $i['TI:28'] ) ) {
+                if ( !valid_blank( $i['TI:28'] ) && $i['TI:28'] != 0 ) {
                     return $i['TI:28'];
                 } else {
                     return sqrt( array_sum( array_map( function($v){ return pow( $v, 2); }, VALUES( $i, 'TO:F','TO:L','TO:P' ) ) ) );
@@ -1361,8 +1361,8 @@ function drac_outputs() {
             'name_ascii' => 'D0 (Gy.ka-1)',
             'description' => 'The cosmic dose rate calculated at the sample depth, 55°N and sea level.',
             'value' => function($i){
-                if( $i['TI:43'] == 0 || valid_blank( $i['TI:43'] ) ) {
-                    return $i['TI:50'];
+                if( valid_blank( $i['TI:43'] ) ) {
+                    return 0;
                 } else {
                     $a = $i['TI:43'] * $i['TI:45'];
                     if( $a < 1.67 ) {
@@ -1378,8 +1378,8 @@ function drac_outputs() {
             'name_ascii' => 'errD0 (Gy.ka-1)',
             'description' => 'The cosmic dose rate calculated at the sample depth, 55°N and sea level.',
             'value' => function($i){
-                if( $i['TI:43'] == 0 || valid_blank( $i['TI:43'] ) ) {
-                    return $i['TI:51'];
+                if( valid_blank( $i['TI:43'] ) ) {
+                    return 0;
                 } else {
                     return factor_sqrt_sum_sqr_ratio( $i, 'TO:GA', 'TI:44', 'TI:43', 'TI:46', 'TI:45' );
                 }
@@ -1390,7 +1390,7 @@ function drac_outputs() {
             'name_ascii' => 'Geomagnetic latitude',
             'description' => 'The geomagnetic latitude calculated from the sample latitude and longitude and sampling depth.',
             'value' => function($i){
-                if( $i['TI:43'] == 0 ) {
+                if( valid_blank( $i['TI:43'] ) ) {
                     return 0;
                 } else {
                     $p = pi() / 180;
@@ -1402,19 +1402,19 @@ function drac_outputs() {
             'name' => 'F',
             'name_ascii' => 'F',
             'description' => 'The factors required to correct the cosmic dose rate for altitude and geomagnetic latitude (after Prescott and Stefan, 1982).',
-            'value' => function($i){  return ($i['TI:43'] == 0) ? 0 : LT6( 'F', round( VALUE( $i, 'TO:GC') ) );  },
+            'value' => function($i){  return  valid_blank($i['TI:43']) ? 0 : LT6( 'F', round( VALUE( $i, 'TO:GC') ) );  },
         ),
         'TO:GE' =>  array(
             'name' => 'H',
             'name_ascii' => 'H',
             'description' => 'The factors required to correct the cosmic dose rate for altitude and geomagnetic latitude (after Prescott and Stefan, 1982).',
-            'value' => function($i){  return ($i['TI:43'] == 0) ? 0 : LT6( 'H', round( VALUE( $i, 'TO:GC') ) );  },
+            'value' => function($i){  return valid_blank($i['TI:43']) ? 0 : LT6( 'H', round( VALUE( $i, 'TO:GC') ) );  },
         ),
         'TO:GF' =>  array(
             'name' => 'J',
             'name_ascii' => 'J',
             'description' => 'The factors required to correct the cosmic dose rate for altitude and geomagnetic latitude (after Prescott and Stefan, 1982).',
-            'value' => function($i){  return ($i['TI:43'] == 0) ? 0 : LT6( 'J', round( VALUE( $i, 'TO:GC') ) );  },
+            'value' => function($i){  return valid_blank($i['TI:43']) ? 0 : LT6( 'J', round( VALUE( $i, 'TO:GC') ) );  },
         ),
         'TO:GG' =>  array(
             'name' => 'Ḋc (Gy.ka-1)',

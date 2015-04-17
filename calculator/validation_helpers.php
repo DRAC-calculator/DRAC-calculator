@@ -56,5 +56,5 @@ function valid_blank_input($input_properties, $value) {
 }
 
 function valid_blank($value) {
-    return $value == 'X';
+		return strcmp($value, 'X') == 0;
 }
