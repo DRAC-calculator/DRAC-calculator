@@ -1423,6 +1423,8 @@ function drac_outputs() {
             'value' => function($i){
                 if( !valid_blank( $i['TI:50'] ) ) {
                     return $i['TI:50'];
+                } else if( VALUE( $i, 'TO:GE') == 0 ) {
+                    return 0;
                 } else {
                     return VALUE( $i, 'TO:GA') * ( VALUE( $i, 'TO:GD') + VALUE( $i, 'TO:GF') * exp( ($i['TI:49']/1000.0) / VALUE( $i, 'TO:GE')) );
                 }
