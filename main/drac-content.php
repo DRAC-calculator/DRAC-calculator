@@ -1,5 +1,5 @@
 <?php
-    $pages = array( 'userguide', 'calculator', 'datatables', 'whoweare', 'references' );
+    $pages = array( 'userguide', 'calculator', 'datatables', 'news', 'whoweare', 'references' );
     $current = empty($_GET['show']) ? '' : $_GET['show'];
 
 	echo '<div class="drac_content">';

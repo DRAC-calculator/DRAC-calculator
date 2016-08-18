@@ -19,7 +19,7 @@
 
 <h2>Georgina King</h2>
 
-<p><img src="<?php DRAC_URL ?>images/GK.jpg" alt="">Georgina is an SNF Senior Scientist in the Institute of Earth Surface Dynamics (IDyST) at the University of Lausanne, Switzerland. She has a background in Quaternary Science and is specifically interested in geochronology. Her current projects include:</p>
+<p><img src="<?php DRAC_URL ?>images/GK.jpg" alt="">Georgina is manager of the <a href="http://www.geographie.uni-koeln.de/information.236.en.html">Cologne Luminescence Laboratory</a> at the University of Cologne, Germany. She has a background in Quaternary Science and is specifically interested understanding landscape response to climatic changes using geochronology. Her current projects include:</p>
 
 <ul>
 <li>Developing optically stimulated luminescence dating as a low-temperature thermochronometer, working on samples from Namche Barwa, Tibet</li>
@@ -27,7 +27,7 @@
 <li>Understanding the interactions between volcanic activity and climatic changes in the Kamchatkan Central Depression</li>
 </ul>
 
-<p>You can find Georgina on her University of Lausanne <a href="https://applicationspub.unil.ch/interpub/noauth/php/Un/UnPers.php?PerNum=1147291&amp;LanCode=37&amp;menu=coord">webpage</a>. She can be contacted by email at georgina.king@unil.ch.</p>
+<p>You can find Georgina on her University of Cologne <a href=" http://www.geographie.uni-koeln.de/index.1277.en.html"> webpage</a>. She can be contacted by email at georgina.king@uni-koeln.de.</p>
 
 <p></p>
 
@@ -56,4 +56,3 @@
 	<img src="<?php DRAC_URL ?>images/unilogo_bleu.png" alt="" class="drac_img_row">
 	<img src="<?php DRAC_URL ?>images/SNF_RGB_E_POS.png" alt="" class="drac_img_row">
 </p>
-

@@ -23,6 +23,7 @@
 <p>Brennan, B.J., Lyons, R.G., Phillips, S.W., 1991. Attenuation of alpha particle track dose for spherical grains. International Journal of Radiation Applications and Instrumentation. Part D. Nuclear Tracks and Radiation Measurements 18, 249-253. </p>
 <p>Guerin, G., Mercier, N., Adamiec, G., 2011. Dose-rate conversion factors: update. Ancient TL, 29, 5-8. </p>
 <p>Guerin, G., Mercier, N., Nathan, R., Adamiec, G., Lefrais, Y., 2012. On the use of the infinite matrix assumption and associated concepts: A critical review. Radiation Measurements, 47, 778-785. </p>
+<p>Kreutzer, S., Dietze, M., Burow, C., Fuchs, M.C., Schmidt, C., Fischer, M., Friedrich, J., Mercier, N., Smedley, R.K., Durcan, J.A., King, G., Fuchs, M., 2016. Luminescence: Comprehensive Luminescence Dating Data Analysis. R package version 0.6.0. <a href="http://CRAN.R-project.org/package=Luminescence">http://CRAN.R-project.org/package=Luminescenc</a></p>
 <p>Liritzis, I., Stamoulis, K., Papachristodoulou, C., Ioannides, K., 2013. A re-evaluation of radiation dose-rate conversion factors. Mediterranean Archaeology and Archaeometry 13, 1-15. </p>
 <p>Mejdahl, V., 1979. Thermoluminescence Dating: Beta-Dose Attenuation in Quartz Grains. Archaeometry 21, 61-72.</p>
 <p>Mejdahl, V., 1987. Internal radioactivity in quartz and feldspar grains. Ancient TL 5, 10-17.</p>

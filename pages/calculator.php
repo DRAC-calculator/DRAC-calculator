@@ -12,7 +12,7 @@
 
 <p>Users should note that all calculations in DRAC are made prior to rounding, although all values reported in the output table are given to 3 decimal places. Users may therefore note a small discrepancy between the age reported by DRAC and the value calculated when dividing De by Ḋ using the values from the output table. This does not represent an error in calculation, but rather the effects of rounding. </p>
 
-<p>DRAC v<?php echo DRAC_VERSION; ?> &mdash;  Release date: March 2015</p>
+<p>DRAC v<?php echo DRAC_VERSION; ?> &mdash;  Release date: August 2016</p>
 <p>DRAC source code is available at <a href="https://github.com/DRAC-calculator/DRAC-calculator">github.com/DRAC-calculator/DRAC-calculator</a> and is licensed under GPLv3.</p>
 
 <p>

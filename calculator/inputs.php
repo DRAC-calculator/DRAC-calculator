@@ -352,7 +352,7 @@ function drac_inputs() {
         'TI:43' => array(
             'name' => 'Depth (m)',
             'name_ascii' => 'Depth (m)',
-            'description' => 'Depth and uncertainty from which sample was extracted beneath the ground surface. Inputs should be 0 or positive and not left blank. If user defined Ḋc will be used then an "X" must be input.',
+            'description' => 'Depth and uncertainty from which sample was extracted beneath the ground surface. Inputs should be 0 or positive and not left blank.',
             'validate' => function($val, $inputs){
               if( greater_or_equal_to(0, $val) ) {
                   foreach([49,50] as $i) {
@@ -371,7 +371,7 @@ function drac_inputs() {
         'TI:44' => array(
             'name' => 'δDepth (m)',
             'name_ascii' => 'errDepth (m)',
-            'description' => 'Depth and uncertainty from which sample was extracted beneath the ground surface. Inputs should be 0 or positive and not left blank. If user defined Ḋc will be used then an "X" must be input.',
+            'description' => 'Depth and uncertainty from which sample was extracted beneath the ground surface. Inputs should be 0 or positive and not left blank.',
             'validate' => function($val, $inputs){
               if( greater_or_equal_to(0, $val) ) {
                   foreach([49,50] as $i) {
@@ -390,7 +390,7 @@ function drac_inputs() {
         'TI:45' => array(
             'name' => 'Overburden density (g.cm-3)',
             'name_ascii' => 'Overburden density (g cm-3)',
-            'description' => 'Density of the overlying sediment matrix from which the sample was taken. Inputs should be 0 or positive and not be left blank. If user defined Ḋc will be used then an "X" must be input.',
+            'description' => 'Density of the overlying sediment matrix from which the sample was taken. Inputs should be 0 or positive and not be left blank. The scaling calculation will use the overburden density and uncertainty provided.',
             'validate' => function($val, $inputs){
               if( greater_or_equal_to(0, $val) ) {
                   foreach([49,50] as $i) {
@@ -409,7 +409,7 @@ function drac_inputs() {
         'TI:46' => array(
             'name' => 'δOverburden density (g.cm-3)',
             'name_ascii' => 'errOverburden density (g cm-3)',
-            'description' => 'Density of the overlying sediment matrix from which the sample was taken. Inputs should be 0 or positive and not be left blank. If user defined Ḋc will be used then an "X" must be input.',
+            'description' => 'Density of the overlying sediment matrix from which the sample was taken. Inputs should be 0 or positive and not be left blank. The scaling calculation will use the overburden density and uncertainty provided.',
             'validate' => function($val, $inputs){
               if( greater_or_equal_to(0, $val) ) {
                   foreach([49,50] as $i) {
@@ -428,7 +428,7 @@ function drac_inputs() {
         'TI:47' => array(
             'name' => 'Latitude (decimal degrees)',
             'name_ascii' => 'Latitude (decimal degrees)',
-            'description' => 'Latitude and longitude of sample location (in degree decimals). Positive values should be used for northern latitudes and eastern longitudes and negative values for southern latitudes and western longitudes. Inputs should range from – 90 to 90° for latitudes and -180 to 180° for longitude. If user defined Ḋc will be used then an "X" must be input.',
+            'description' => 'Latitude and longitude of sample location (in degree decimals). Positive values should be used for northern latitudes and eastern longitudes and negative values for southern latitudes and western longitudes. Inputs should range from – 90 to 90° for latitudes and -180 to 180° for longitude.',
             'validate' => function($val, $inputs){
               if( within_range(-90, 90, $val) ) {
                   foreach([49,50] as $i) {
@@ -447,7 +447,7 @@ function drac_inputs() {
         'TI:48' => array(
             'name' => 'Longitude (decimal degrees)',
             'name_ascii' => 'Longitude (decimal degrees)',
-            'description' => 'Latitude and longitude of sample location (in degree decimals). Positive values should be used for northern latitudes and eastern longitudes and negative values for southern latitudes and western longitudes. Inputs should range from – 90 to 90° for latitudes and -180 to 180° for longitude. If user defined Ḋc will be used then an "X" must be input.',
+            'description' => 'Latitude and longitude of sample location (in degree decimals). Positive values should be used for northern latitudes and eastern longitudes and negative values for southern latitudes and western longitudes. Inputs should range from – 90 to 90° for latitudes and -180 to 180° for longitude.',
             'validate' => function($val, $inputs){
               if( within_range(-180, 180, $val) ) {
                   foreach([49,50] as $i) {
@@ -466,7 +466,7 @@ function drac_inputs() {
         'TI:49' => array(
             'name' => 'Altitude (m asl)',
             'name_ascii' => 'Altitude (m)',
-            'description' => 'Altitude of sample location in metres above sea level. Input should be less than 5000 and not left blank. If user defined Ḋc will be used then an "X" must be input.',
+            'description' => 'Altitude of sample location in metres above sea level. Input should be less than 5000 and not left blank.',
             'validate' => function($val, $inputs){
               if( less_than(5000, $val) ) {
                   foreach([49,50] as $i) {

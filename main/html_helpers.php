@@ -7,6 +7,7 @@ function drac_menu_html() {
     $html .= '<li><a href="' . DRAC_URL . '?show=userguide" class="' . ($current == "userguide" ? 'current' : '') . '">User Guide</a></li>';
     $html .= '<li><a href="' . DRAC_URL . '?show=calculator" class="' . ($current == "calculator" ? 'current' : '') . '">Calculator</a></li>';
     $html .= '<li><a href="' . DRAC_URL . '?show=datatables" class="' . ($current  == "datatables" ? 'current' : '') . '">Data Tables</a></li>';
+    $html .= '<li><a href="' . DRAC_URL . '?show=news" class="' . ($current  == "news" ? 'current' : '') . '">News</a></li>';
     $html .= '<li><a href="' . DRAC_URL . '?show=whoweare" class="' . ($current  == "whoweare" ? 'current' : '') . '">Who we are</a></li>';
     $html .= '<li><a href="' . DRAC_URL . '?show=references" class="' . ($current  == "references" ? 'current' : '') . '">References</a></li>';
     $html .= '</ul>';

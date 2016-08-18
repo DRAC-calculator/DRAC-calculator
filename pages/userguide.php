@@ -23,7 +23,8 @@
 
 <h3 id="drac_downloads">Downloads</h3>
 <ul>
-	<li><a href="<?php echo DRAC_URL ?>downloads/DRAC_Input_and_Output_Template.xlsx">DRAC Input &amp; Output template</a></li>
+	<li><a href="<?php echo DRAC_URL ?>downloads/DRAC_Input_Template.csv">DRAC Input template</a></li>
+		<li><a href="<?php echo DRAC_URL ?>downloads/DRAC_Output_Template.csv">DRAC Output template</a></li>
 	<li><a href="<?php echo DRAC_URL ?>downloads/Supplementary_Information.xlsx">Supplementary Information</a></li>
 	<li><a href="<?php echo DRAC_URL ?>downloads/Durcan_et_al.,_2015. DRAC_dose_rate_and_age_calculator_for_trapped_charge_dating._Quaternary_Geochronology_28,_54-61.pdf">Durcan et al., 2015</a></li>
 	<!-- <li><a href="<?php echo DRAC_URL ?>downloads/XXX">XXX</a></li> -->
