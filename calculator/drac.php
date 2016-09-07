@@ -165,9 +165,10 @@ class Drac {
 
                 $properites = $this->drac_inputs($ti);
                 $validate_func = $properites['validate'];
+                $custom_errors = "";
 
-                if( !valid_blank_input($properites, $col) && !$validate_func($cols[$j], $cols) ) {
-                    $errors .= 'Row ' . ($i + 1) . ', Column ' . ($j + 1) . ' (' . $ti . ' ' . $properites['name'] . ') Found "' . $col . '": ' . $properites['description'] . "\n";
+                if( !valid_blank_input($properites, $col) && !$validate_func($cols[$j], $cols, $custom_errors) ) {
+                    $errors .= 'Row ' . ($i + 1) . ', Column ' . ($j + 1) . ' (' . $ti . ' ' . $properites['name'] . ') Found "' . $col . '": ' . $properites['description'] . " " . $custom_errors . "\n";
                 }
 
                 if( $properites['type'] == 'float' && !valid_blank_input($properites, $col) ) {
@@ -178,6 +179,7 @@ class Drac {
 
             array_push( $this->data, $data_row );
         }
+        // print_r($errors);
         return $errors;
     }
 

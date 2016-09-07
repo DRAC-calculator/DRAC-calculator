@@ -257,7 +257,20 @@ function drac_inputs() {
             'name' => 'Scale Ḋγ at shallow depths?',
             'name_ascii' => 'Scale gammadoserate at shallow depths?',
             'description' => 'Users may choose to scale gamma dose rates for samples taken within 0.3 m of the ground surface. The scaling factors of Aitken (1985) are used. Input should be yes “Y” or no “N”.',
-            'validate' => function($val){ return in_array(strtoupper($val), array("Y","N")); },
+            'validate' => function($val, $inputs, &$custom_errors){
+              if( strtoupper($val) == 'Y') {
+                  if( valid_blank( $inputs[45-1] ) ) {
+                      $custom_errors = "Sediment density (TI:45) must be provided if gamma dose rate scaling (TI:31) = Y";
+                      return false;
+                  } else {
+                      return true;
+                  }
+              } else if (strtoupper($val) == 'N') {
+                  return true;
+              } else {
+                  return false;
+              }
+            },
             'required' => false,
             'type' => 'string',
         ),
@@ -355,11 +368,6 @@ function drac_inputs() {
             'description' => 'Depth and uncertainty from which sample was extracted beneath the ground surface. Inputs should be 0 or positive and not left blank.',
             'validate' => function($val, $inputs){
               if( greater_or_equal_to(0, $val) ) {
-                  foreach([49,50] as $i) {
-                      if( !valid_blank( $inputs[$i] ) ) {
-                        return false;
-                      }
-                  }
                   return true;
               } else {
                   return false;
@@ -374,11 +382,6 @@ function drac_inputs() {
             'description' => 'Depth and uncertainty from which sample was extracted beneath the ground surface. Inputs should be 0 or positive and not left blank.',
             'validate' => function($val, $inputs){
               if( greater_or_equal_to(0, $val) ) {
-                  foreach([49,50] as $i) {
-                      if( !valid_blank( $inputs[$i] ) ) {
-                        return false;
-                      }
-                  }
                   return true;
               } else {
                   return false;
@@ -393,11 +396,6 @@ function drac_inputs() {
             'description' => 'Density of the overlying sediment matrix from which the sample was taken. Inputs should be 0 or positive and not be left blank. The scaling calculation will use the overburden density and uncertainty provided.',
             'validate' => function($val, $inputs){
               if( greater_or_equal_to(0, $val) ) {
-                  foreach([49,50] as $i) {
-                      if( !valid_blank( $inputs[$i] ) ) {
-                        return false;
-                      }
-                  }
                   return true;
               } else {
                   return false;
@@ -412,11 +410,6 @@ function drac_inputs() {
             'description' => 'Density of the overlying sediment matrix from which the sample was taken. Inputs should be 0 or positive and not be left blank. The scaling calculation will use the overburden density and uncertainty provided.',
             'validate' => function($val, $inputs){
               if( greater_or_equal_to(0, $val) ) {
-                  foreach([49,50] as $i) {
-                      if( !valid_blank( $inputs[$i] ) ) {
-                        return false;
-                      }
-                  }
                   return true;
               } else {
                   return false;
@@ -431,11 +424,6 @@ function drac_inputs() {
             'description' => 'Latitude and longitude of sample location (in degree decimals). Positive values should be used for northern latitudes and eastern longitudes and negative values for southern latitudes and western longitudes. Inputs should range from – 90 to 90° for latitudes and -180 to 180° for longitude.',
             'validate' => function($val, $inputs){
               if( within_range(-90, 90, $val) ) {
-                  foreach([49,50] as $i) {
-                      if( !valid_blank( $inputs[$i] ) ) {
-                        return false;
-                      }
-                  }
                   return true;
               } else {
                   return false;
@@ -450,11 +438,6 @@ function drac_inputs() {
             'description' => 'Latitude and longitude of sample location (in degree decimals). Positive values should be used for northern latitudes and eastern longitudes and negative values for southern latitudes and western longitudes. Inputs should range from – 90 to 90° for latitudes and -180 to 180° for longitude.',
             'validate' => function($val, $inputs){
               if( within_range(-180, 180, $val) ) {
-                  foreach([49,50] as $i) {
-                      if( !valid_blank( $inputs[$i] ) ) {
-                        return false;
-                      }
-                  }
                   return true;
               } else {
                   return false;
@@ -469,11 +452,6 @@ function drac_inputs() {
             'description' => 'Altitude of sample location in metres above sea level. Input should be less than 5000 and not left blank.',
             'validate' => function($val, $inputs){
               if( less_than(5000, $val) ) {
-                  foreach([49,50] as $i) {
-                      if( !valid_blank( $inputs[$i] ) ) {
-                        return false;
-                      }
-                  }
                   return true;
               } else {
                   return false;

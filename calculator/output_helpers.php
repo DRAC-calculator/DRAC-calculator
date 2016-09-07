@@ -89,7 +89,8 @@ function lt7_factor($inputs, $type) {
     if( ( strtoupper( $inputs['TI:13'] ) == 'N' ) || ( VALUE( $inputs, 'TI:43' ) > 0.3 ) || valid_blank( VALUE( $inputs, 'TI:43' ) ) ) {
         return 1;
     } else {
-        $d = round( VALUE( $inputs, 'TI:43' ) * 2, 3) / 2 ;
+        $d = VALUE( $inputs, 'TI:43' ) * ( 2 / VALUE( $inputs, 'TI:45' ) );
+        $d = round( $d * 2, 2) / 2;
         $d = str_pad( $d, 5, '0' );
         return LT7( $type, $d );
     }

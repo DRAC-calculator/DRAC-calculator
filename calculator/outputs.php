@@ -1314,7 +1314,17 @@ function drac_outputs() {
             'name' => 'Water corrected Ḋγ (Gy.ka-1)',
             'name_ascii' => 'Water corrected gammadoserate (Gy.ka-1)',
             'description' => $water_corrected,
-            'value' => function($i){  return VALUE( $i, 'TO:FO' ) / ( 1 + LT5( 'Gamma' ) * ( $i['TI:41'] / 100.0 ) );  },
+            'value' => function($i){
+            // return VALUE( $i, 'TO:FO' ) / ( 1 + LT5( 'Gamma' ) * ( $i['TI:41'] / 100.0 ) );
+
+              if(valid_blank( $i['TI:5'] ) || valid_blank( $i['TI:6'] ) || valid_blank( $i['TI:7'] ) || valid_blank( $i['TI:8'] ) || valid_blank( $i['TI:9'] ) || valid_blank( $i['TI:10'] ) || valid_blank( $i['TI:27'] ) || valid_blank( $i['TI:28']) ) {
+                return ( VALUE( $i, 'TO:AI' ) + VALUE( $i, 'TO:AK' ) +  VALUE( $i, 'TO:AM' ) )
+                  / ( 1 + LT5( 'Gamma' ) * ( $i['TI:41'] / 100.0 ) );
+              } else {
+                return ( VALUE( $i, 'TO:AO' ) )
+                  / ( 1 + LT5( 'Gamma' ) * ( $i['TI:41'] / 100.0 ) );
+              }
+            },
         ),
         'TO:FV' =>  array(
             'name' => 'Water corrected δḊγ (Gy.ka-1)',
@@ -1390,7 +1400,7 @@ function drac_outputs() {
             'name_ascii' => 'Geomagnetic latitude',
             'description' => 'The geomagnetic latitude calculated from the sample latitude and longitude and sampling depth.',
             'value' => function($i){
-                if( valid_blank( $i['TI:43'] ) ) {
+                if( valid_blank( $i['TI:43'] ) || floatval($i['TI:43']) == 0  ) {
                     return 0;
                 } else {
                     $p = pi() / 180;
@@ -1402,19 +1412,24 @@ function drac_outputs() {
             'name' => 'F',
             'name_ascii' => 'F',
             'description' => 'The factors required to correct the cosmic dose rate for altitude and geomagnetic latitude (after Prescott and Stefan, 1982).',
-            'value' => function($i){  return  valid_blank($i['TI:43']) ? 0 : LT6( 'F', round( VALUE( $i, 'TO:GC') ) );  },
+            'value' => function($i){
+              return  (valid_blank($i['TI:43']) || floatval($i['TI:43']) == 0) ? 0 : LT6( 'F', round( VALUE( $i, 'TO:GC') ) );  },
         ),
         'TO:GE' =>  array(
             'name' => 'H',
             'name_ascii' => 'H',
             'description' => 'The factors required to correct the cosmic dose rate for altitude and geomagnetic latitude (after Prescott and Stefan, 1982).',
-            'value' => function($i){  return valid_blank($i['TI:43']) ? 0 : LT6( 'H', round( VALUE( $i, 'TO:GC') ) );  },
+            'value' => function($i){
+              return (valid_blank($i['TI:43']) || floatval($i['TI:43']) == 0) ? 0 : LT6( 'H', round( VALUE( $i, 'TO:GC') ) );
+            },
         ),
         'TO:GF' =>  array(
             'name' => 'J',
             'name_ascii' => 'J',
             'description' => 'The factors required to correct the cosmic dose rate for altitude and geomagnetic latitude (after Prescott and Stefan, 1982).',
-            'value' => function($i){  return valid_blank($i['TI:43']) ? 0 : LT6( 'J', round( VALUE( $i, 'TO:GC') ) );  },
+            'value' => function($i){
+              return (valid_blank($i['TI:43']) || floatval($i['TI:43']) == 0) ? 0 : LT6( 'J', round( VALUE( $i, 'TO:GC') ) );
+            },
         ),
         'TO:GG' =>  array(
             'name' => 'Ḋc (Gy.ka-1)',
@@ -1462,13 +1477,25 @@ function drac_outputs() {
             'name' => 'Internal Ḋr (Gy.ka-1)',
             'name_ascii' => 'Internal doserate (Gy.ka-1)',
             'description' => $drac_int_ext_dose_rate,
-            'value' => function($i){  return VALUE( $i, 'TO:FW') + VALUE( $i, 'TO:FY');  },
+            'value' => function($i){
+              if( valid_blank( $i['TI:29'] ) ) {
+                return VALUE( $i, 'TO:FW') + VALUE( $i, 'TO:FY');
+              } else {
+                return $i['TI:29'];
+              }
+            },
         ),
         'TO:GL' =>  array(
             'name' => 'Internal δḊr (Gy.ka-1)',
             'name_ascii' => 'Internal errdoserate (Gy.ka-1)',
             'description' => $drac_int_ext_dose_rate,
-            'value' => function($i){  return sqrt_sum_sqrs( VALUE( $i, 'TO:FX'), VALUE( $i, 'TO:FZ') );  },
+            'value' => function($i){
+              if( valid_blank( $i['TI:30'] ) ) {
+                return sqrt_sum_sqrs( VALUE( $i, 'TO:FX'), VALUE( $i, 'TO:FZ') );
+              } else {
+                return $i['TI:30'];
+              }
+            },
         ),
         'TO:GM' =>  array(
             'name' => 'Environmental Dose Rate (Gy.ka-1)',
