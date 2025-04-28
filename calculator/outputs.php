@@ -516,7 +516,15 @@ function drac_outputs() {
             'name' => 'Grain size corrected user external Ḋα (Gy.ka-1)',
             'name_ascii' => 'Grain size corrected user external alphadoserate (Gy.ka-1)',
             'description' => $alpha_grain_size_corrected,
-            'value' => function($i){  return VALUE( $i, 'TO:BE' ) * $i['TI:23'];  },
+            'value' => function($i){
+				if (!is_numeric( VALUE( $i, 'TO:BE' )) ) {
+					return 0;
+				} elseif (!is_numeric( $i['TI:23'])) {
+					return 0;
+				} else {
+					return VALUE( $i, 'TO:BE' ) * $i['TI:23'];
+				}
+			},
         ),
         'TO:BP' =>  array(
             'name' => 'Grain size corrected user external δḊα (Gy.ka-1)',
@@ -708,7 +716,15 @@ function drac_outputs() {
             'name' => 'Grain size corrected user external Ḋβ (Gy.ka-1)',
             'name_ascii' => 'Grain size corrected user external betadoserate (Gy.ka-1)',
             'description' => $beta_grain_size_corrected,
-            'value' => function($i){  return $i['TI:25'] *  VALUE( $i, 'TO:CC' );  },
+			'value' => function($i){
+				if( !is_numeric($i['TI:25']) ) {
+					return 0;
+				} elseif( !is_numeric(VALUE( $i, 'TO:CC' )) ){
+					return 0;
+				} else {
+					return $i['TI:25'] * VALUE( $i, 'TO:CC' );
+				}
+			},
         ),
         'TO:CV' =>  array(
             'name' => 'Grain size corrected user external δḊβ (Gy.ka-1)',

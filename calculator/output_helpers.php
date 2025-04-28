@@ -44,9 +44,14 @@ function LT7($name, $value) {
 }
 
 function lt1_convert($inputs, $param, $a) {
-    $result = $inputs[$a] * LT1( $inputs['TI:4'], $param );
+	if (!is_numeric($inputs[$a])) {
+		$result = 0;
+	} else {
+		$result = $inputs[$a] * LT1( $inputs['TI:4'], $param );
+	}
     return $result;
 }
+
 function lt1_convert_d($inputs, $param, $a, $b, $scale=null) {
     $u = LT1( $inputs['TI:4'], $param );
     $du = LT1( $inputs['TI:4'], 'δ' . $param );

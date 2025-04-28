@@ -6,7 +6,7 @@
 
     define('DRAC_ROOT', dirname(__FILE__) . '/..' );
     define('DRAC_URL', '' );
-    define('DRAC_VERSION', '1.2' );
+    define('DRAC_VERSION', '1.3' );
 
     global $drac_calc;
 

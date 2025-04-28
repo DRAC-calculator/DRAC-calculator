@@ -21,3 +21,12 @@
 <li>DRAC Input and Output templates are now available in .csv format.</li>
 <li>Aesthetic modifications have been made to the DRAC input and output templates.</li>
 </ul>
+
+<h4>June 2025 - update to DRAC v 1.3</h4>
+
+<p>Revisions:</p>
+<ul>
+<li>Restriction on the largest grain size parameter possible (TI:32-33) changed from 1000 μm to 5000 μm</li>
+<li>Cresswell et al. (2018) dose rate conversion factors added as an option for TI:4</li>
+</ul>
+

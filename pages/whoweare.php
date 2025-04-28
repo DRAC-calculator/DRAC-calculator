@@ -41,7 +41,7 @@
 <li>Re-evaluating the environmental controls of the Harappan Civilization collapse using OSL dating of river palaeochannel sediments</li>
 </ul>
 
-<p>You can find Geoff on his Aberystwyth University <a href="http://www.aber.ac.uk/en/iges/staff/academic-staff/ggd/">webpage</a> and can contact him by email at ggd@aber.ac.uk.</p>
+<p>You can find Geoff on his Aberystwyth University <a href="https://www.aber.ac.uk/en/dges/staff-profiles/listing/profile/ggd/">webpage</a> and can contact him by email at ggd@aber.ac.uk.</p>
 
 <h2>Acknowledgements</h2>
 

@@ -7,6 +7,8 @@ class Drac {
 
     public $values;
     public $submitted;
+	public $data;
+	public $output_file_name;
 
     function __construct($globals, $params) {
        $this->submitted = (count($params) > 0);
