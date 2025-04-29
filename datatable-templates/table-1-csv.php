@@ -2,6 +2,7 @@
 	global $drac_LT1;
 	$names = array_keys( $drac_LT1 );
 	$names_pres = array(
+		'cresswelletal2018' => 'Cresswelletal2018',
 		'liritzisetal2013' => 'Liritzisetal2013',
 		'guerinetal2011' => 'Guerinetal2011',
 		'adamiecaitken1998' => 'AdamiecAitken1998',
