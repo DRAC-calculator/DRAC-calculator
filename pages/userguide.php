@@ -19,14 +19,14 @@
 </ol>
 </p>
 
-<p>Please ensure you cite the use of DRAC in your work, published or otherwise. Please cite the website name and version (e.g. DRAC v<?php echo DRAC_VERSION ?>) and the accompanying journal article: Durcan, J.A., King, G.E., Duller, G.A.T., 2015. DRAC: Dose rate and age calculation for trapped charge dating. Quaternary Geochronology, submitted. [at present a download to the submitted document].</p>
+<p>Please ensure you cite the use of DRAC in your work, published or otherwise. Please cite the website name and version (e.g. DRAC v<?php echo DRAC_VERSION ?>) and the accompanying journal article: Durcan, J.A., King, G.E., Duller, G.A.T. (2015). DRAC: Dose rate and age calculation for trapped charge dating. Quaternary Geochronology, 28, 54-61. [<a href="<?php echo DRAC_URL ?>downloads/Durcan_et_al.,_2015. DRAC_dose_rate_and_age_calculator_for_trapped_charge_dating._Quaternary_Geochronology_28,_54-61.pdf">Download Paper</a>]</p>
 
 <h3 id="drac_downloads">Downloads</h3>
 <ul>
 	<li><a href="<?php echo DRAC_URL ?>downloads/DRAC_Input_Template.csv">DRAC Input template</a></li>
 		<li><a href="<?php echo DRAC_URL ?>downloads/DRAC_Output_Template.csv">DRAC Output template</a></li>
 	<li><a href="<?php echo DRAC_URL ?>downloads/Supplementary_Information.xlsx">Supplementary Information</a></li>
-	<li><a href="<?php echo DRAC_URL ?>downloads/Durcan_et_al.,_2015. DRAC_dose_rate_and_age_calculator_for_trapped_charge_dating._Quaternary_Geochronology_28,_54-61.pdf">Durcan et al., 2015</a></li>
+	<li><a href="<?php echo DRAC_URL ?>downloads/Durcan_et_al.,_2015. DRAC_dose_rate_and_age_calculator_for_trapped_charge_dating._Quaternary_Geochronology_28,_54-61.pdf">Durcan et al.(2015) Quaternary Geochronology 28, 54-61</a></li>
 	<!-- <li><a href="<?php echo DRAC_URL ?>downloads/XXX">XXX</a></li> -->
 </ul>
 

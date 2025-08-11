@@ -40,7 +40,7 @@ function drac_inputs() {
         'TI:4' => array(
             'name' => 'Conversion factors',
             'name_ascii' => 'Conversion factors',
-            'description' => 'The conversion factors required to calculate dose rates from radionuclide concentrations. Users have the option of datasets from Adamiec and Aitken (1998), Guerin et al. (2011), Liritzis et al. (2013) or Cresswell et al. (2018). Input must be “AdamiecAitken1998”, “Guerinetal2011”, “Liritzisetal2013”, “Cresswelletal2018” or “X” if conversion factors are not required.',
+            'description' => 'The conversion factors required to calculate dose rates from radionuclide concentrations. Users have the option of datasets from Adamiec and Aitken (1998), Guerin et al. (2011), Liritzis et al. (2013), or Cresswell et al. (2018). Input must be “AdamiecAitken1998”, “Guerinetal2011”, “Liritzisetal2013”, “Cresswelletal2018” or “X” if conversion factors are not required.',
             'validate' => function($val){ return in_array(strtolower($val), array("guerinetal2011","adamiecaitken1998","liritzisetal2013","cresswelletal2018")); },
             'required' => false,
             'type' => 'string',
@@ -293,7 +293,7 @@ function drac_inputs() {
         'TI:34' => array(
             'name' => 'α-Grain size attenuation factors',
             'name_ascii' => 'alpha-Grain size attenuation',
-            'description' => 'The grain size attenuation factors for the alpha dose rate. Users have the option of datasets from Bell (1980) and Brennan et al. (1991). Input must be “Bell1980” or “Brennanetal1991”.',
+            'description' => 'The grain size attenuation factors for the alpha dose rate. Users have the option of datasets from Bell (1980), Brennan et al. (1991), or Martin et al. (2014). Input must be “Bell1980”, “Brennanetal1991”, or “Martinetal2014”.',
             'validate' => function($val){ return in_array(strtolower($val), array("bell1980","brennanetal1991")); },
             'required' => true,
             'type' => 'string',

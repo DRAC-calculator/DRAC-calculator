@@ -12,6 +12,16 @@
 
 <h2>Updates</h2>
 
+<h4>August 2025 - update to DRAC v 1.3</h4>
+
+<p>Revisions: </p>
+<ul>
+<li>The conversion factors of Cresswell et al. (2018) have been added and are available for use. </li>
+<li>The alpha grain size attenuation factors of Martin et al. (2014) have been added and are available for use.</li>
+<li>The data tables page has been updated to include the data of Cresswell et al. (2018) and Martin et al. (2014)</li>
+<li>Minor aesthetic modifications to the website have been made.  </li>
+</ul>
+
 <h4>August 2016 – update to DRAC v 1.2</h4>
 
 <p>Revisions:</p>

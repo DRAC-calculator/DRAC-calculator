@@ -27,4 +27,3 @@
 
 <p>DRAC has been conceived, designed and developed in equal parts by <a href="<?php DRAC_URL ?>?show=whoweare">Julie Durcan</a>, <a href="<?php DRAC_URL ?>?show=whoweare">Georgina King</a> and <a href="<?php DRAC_URL ?>?show=whoweare">Geoff Duller</a>. We welcome feedback and suggestions from the trapped charge dating community, as well as data contributions to the site and collaboration.</p>
 
-<p>Further information about different Quaternary dating methods can be found at <a href="http://datingthepast.org">datingthepast.org</a>.</p>

@@ -6,40 +6,21 @@
 
 <h2>Julie Durcan</h2>
 
-<p><img src="<?php DRAC_URL ?>images/JD.jpg" alt="">Julie is a Supernumerary Teaching Fellow at St John’s College, Oxford and researcher at the School of Geography and the Environment, University of Oxford. She is a Quaternary Scientist with interests in palaeoenvironmental change in dryland regions, geoarchaeological applications and the advancement of luminescence dating as a geochronological technique. Her current projects include:</p>
-
-<ul>
-<li>Reconstructing Holocene palaeoenvironments in the Indian sub-continent</li>
-<li>Reconciling dust flux and fluvial activity in the Namib Desert</li>
-<li>Quantifying late Quaternary fluvial and aeolian activity in Central Australia</li>
-<li>Optimising the luminescence signal from quartz for dating applications</li>
-</ul>
+<p><img src="<?php DRAC_URL ?>images/JD.jpg" alt="">Julie is a researcher at the School of Geography and the Environment, University of Oxford and manages the Oxford Dating Laboratory. She is a Quaternary Scientist with interests in palaeoenvironmental change in dryland regions, geoarchaeological applications and the advancement of luminescence dating as a geochronological technique.</p>
 
 <p>You can find Julie on her University of Oxford <a href="http://www.geog.ox.ac.uk/staff/jdurcan.html">webpage</a>. She can be contacted by email at julie.durcan@ouce.ox.ac.uk.</p>
 
 <h2>Georgina King</h2>
 
-<p><img src="<?php DRAC_URL ?>images/GK.jpg" alt="">Georgina is manager of the <a href="http://www.geographie.uni-koeln.de/information.236.en.html">Cologne Luminescence Laboratory</a> at the University of Cologne, Germany. She has a background in Quaternary Science and is specifically interested understanding landscape response to climatic changes using geochronology. Her current projects include:</p>
+<p><img src="<?php DRAC_URL ?>images/GK.jpg" alt="">Georgina is an Associate Professor in the Institute of Earth Surface Dynamics at the University of Lausanne, Switzerland. She co-leads the ICE group (<a href="https://wp.unil.ch/ice/">Interactions between Climate and Earth Surface Processes</a>) and the University of Lausanne Luminescence and Electron Spin Resonance dating laboratories. She is interested in the combination of trapped-charge dating with numerical models, particularly for geomorphological applications.</p>
 
-<ul>
-<li>Developing optically stimulated luminescence dating as a low-temperature thermochronometer, working on samples from Namche Barwa, Tibet</li>
-<li>Reconciling the tephro- and luminescence chronologies of the Palouse Loess, Washington State, USA</li>
-<li>Understanding the interactions between volcanic activity and climatic changes in the Kamchatkan Central Depression</li>
-</ul>
-
-<p>You can find Georgina on her University of Cologne <a href=" http://www.geographie.uni-koeln.de/index.1277.en.html"> webpage</a>. She can be contacted by email at georgina.king@uni-koeln.de.</p>
+<p>Georgina can be contacted at georgina.king@unil.ch.</p>
 
 <p></p>
 
 <h2>Geoff Duller</h2>
 
-<p><img src="<?php DRAC_URL ?>images/GGD.jpg" alt="">Geoff is a Professor of Geography in the Department of Geography and Earth Sciences at the Aberystwyth University, Wales, UK. His research is focussed on the development and application of luminescence dating. His recent projects include:</p>
-
-<ul>
-<li>Chronology, Adaption and Environment of the Middle Palaeolithic in northern Africa</li>
-<li>Luminescence dating on the surface of Mars</li>
-<li>Re-evaluating the environmental controls of the Harappan Civilization collapse using OSL dating of river palaeochannel sediments</li>
-</ul>
+<p><img src="<?php DRAC_URL ?>images/GGD.jpg" alt="">Geoff is a Professor of Geography in the Department of Geography and Earth Sciences at Aberystwyth University, Wales, UK and co-Director of the Aberystwyth Luminescence Research Laboratory (<a href="https://www.aber.ac.uk/alrl">ALRL</a>). His research is focussed on the development of luminescence methods and instrumentation, and the development and application of novel luminescence methods for dating geological and archaeological topics.</p>
 
 <p>You can find Geoff on his Aberystwyth University <a href="https://www.aber.ac.uk/en/dges/staff-profiles/listing/profile/ggd/">webpage</a> and can contact him by email at ggd@aber.ac.uk.</p>
 
