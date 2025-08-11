@@ -6,6 +6,7 @@ function drac_input_columns_count() {
 }
 
 function drac_inputs() {
+	global $drac_LT2;
     // Common descriptions used across multiple items
     $external = 'Radionuclide concentrations in parts per million for Uranium, Thorium and Rubidium and % for Potassium. Inputs must be 0 or positive and should not be left blank.';
     $internal = 'Internal radionuclide concentrations in parts per million for Uranium, Thorium and Rubidium and % for Potassium. Inputs must be 0 or positive and should not be left blank.';
@@ -277,31 +278,43 @@ function drac_inputs() {
         'TI:32' => array(
             'name' => 'Grain size min (µm)',
             'name_ascii' => 'Grain size min (microns)',
-            'description' => 'The grain size range analysed. DRAC can be used for the grain size ranges between 1 and 5000 µm. Inputs should range between 1 and 5000 and not be left blank.',
-            'validate' => function($val){ return within_range(1, 5000, $val); },
+            'description' => 'The grain size range analysed. DRAC can be used for the grain size ranges between 1 and 1000 µm for all attenuation factors. For grain sizes above 1000 µm check the range covered by both alpha and beta attenuation data sets (TI:34 and TI:35). The input should not be left blank.',
+            'validate' => function($val, $inputs){ 
+               if ((alpha_attenuation_value_present($inputs[33], $val)) AND (beta_attenuation_value_present($inputs[34],$val))) {
+                    return true;
+                } else {
+                    return false;
+                }
+            },
             'required' => true,
             'type' => 'float',
         ),
         'TI:33' => array(
             'name' => 'Grain size max (µm)',
             'name_ascii' => 'Grain size max (microns)',
-            'description' => 'The grain size range analysed. DRAC can be used for the grain size ranges between 1 and 5000 µm. Inputs should range between 1 and 5000 and not be left blank.',
-            'validate' => function($val){ return within_range(1, 5000, $val); },
+            'description' => 'The grain size range analysed. DRAC can be used for the grain size ranges between 1 and 1000 µm for all attenuation factors. For grain sizes above 1000 µm check the range covered by both alpha and beta attenuation data sets (TI:34 and TI:35). The input should not be left blank.',
+            'validate' => function($val, $inputs){ 
+               if ((alpha_attenuation_value_present($inputs[33], $val)) AND (beta_attenuation_value_present($inputs[34],$val))) {
+                    return true;
+                } else {
+                    return false;
+                }
+            },
             'required' => true,
             'type' => 'float',
         ),
         'TI:34' => array(
             'name' => 'α-Grain size attenuation factors',
             'name_ascii' => 'alpha-Grain size attenuation',
-            'description' => 'The grain size attenuation factors for the alpha dose rate. Users have the option of datasets from Bell (1980), Brennan et al. (1991), or Martin et al. (2014). Input must be “Bell1980”, “Brennanetal1991”, or “Martinetal2014”.',
-            'validate' => function($val){ return in_array(strtolower($val), array("bell1980","brennanetal1991")); },
+            'description' => 'The grain size attenuation factors for the alpha dose rate. Users have the option of datasets from Bell (1980), Brennan et al. (1991), or Martin et al. (2014). Valid inputs are “Bell1980” (between 1 and 1,000 µm), “Brennanetal1991” (between 1 and 1,000 µm), or “Martinetal2014” (between 1 and 10,000 µm).',
+            'validate' => function($val){ return in_array(strtolower($val), array("bell1980","brennanetal1991","martinetal2014")); },
             'required' => true,
             'type' => 'string',
         ),
         'TI:35' => array(
             'name' => 'β-Grain size attenuation factors',
             'name_ascii' => 'beta-Grain size attenuation ',
-            'description' => 'The grain size attenuation factors for the beta dose rate. Users have the option of datasets from Mejdahl (1979), Brennan (2003) and Guerin et al. (2012) for quartz or feldspar. Input must be “Mejdahl1979”, “Brennan2003”, “Guerinetal2012-Q” or “Guerinetal2012-F” .',
+            'description' => 'The grain size attenuation factors for the beta dose rate. Users have the option of datasets from Mejdahl (1979), Brennan (2003) and Guerin et al. (2012) for quartz or feldspar. Valid inputs are “Mejdahl1979” (between 1 and 10,000 µm), “Brennan2003” (between 1 and 10,000 µm), “Guerinetal2012-Q” (between 1 and 1,000 µm) or “Guerinetal2012-F” (between 1 and 1,000 µm).',
             'validate' => function($val){ return in_array(strtolower($val), array("mejdahl1979","brennan2003","guerinetal2012-q","guerinetal2012-f")); },
             'required' => true,
             'type' => 'string',

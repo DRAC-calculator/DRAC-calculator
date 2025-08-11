@@ -7,6 +7,7 @@
 		$grains = array_keys( $drac_LT2[$sets[0]][$params[0]] );
 
 		$names_pres = array(
+		    'martinetal2014' => 'Martinetal2014',
 			'brennanetal1991' => 'Brennanetal1991',
 			'bell1980' => 'Bell1980',
 		);
@@ -26,12 +27,14 @@
 			echo '</thead>';
 
 			foreach( $grains as $grain ) {
-				echo '<tr>';
-				echo '<td>' . $grain .'</td>';
-				foreach( $params as $param) {
-					echo '<td>' . round( $drac_LT2[$set][$param][$grain], 3 ) .'</td>';
+				if (isset($grain,$drac_LT2[$set][$param][$grain])){
+					echo '<tr>';
+					echo '<td>' . $grain .'</td>';
+					foreach( $params as $param) {
+						echo '<td>' . round( $drac_LT2[$set][$param][$grain], 3 ) .'</td>';
+					}
+					echo '</tr>';
 				}
-				echo '</tr>';
 			}
 		}
 	?>

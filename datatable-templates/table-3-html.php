@@ -30,12 +30,14 @@
 			echo '</thead>';
 
 			foreach( $grains as $grain ) {
-				echo '<tr>';
-				echo '<td>' . $grain .'</td>';
-				foreach( array_keys( $drac_LT3[$set] )  as $param) {
-					echo '<td>' . round( $drac_LT3[$set][$param][$grain], 3 ) .'</td>';
-				}
-				echo '</tr>';
+				if (isset($grain,$drac_LT3[$set][$param][$grain])){				
+					echo '<tr>';
+					echo '<td>' . $grain .'</td>';
+					foreach( array_keys( $drac_LT3[$set] )  as $param) {
+						echo '<td>' . round( $drac_LT3[$set][$param][$grain], 3 ) .'</td>';
+					}
+					echo '</tr>';
+				}	
 			}
 		}
 	?>

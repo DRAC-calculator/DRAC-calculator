@@ -32,7 +32,11 @@
 		echo $grain .',';
 		foreach($sets as $set) {
 			foreach( array_keys( $drac_LT3[$set] )  as $param) {
-				echo round( $drac_LT3[$set][$param][$grain], 3 ) .',';
+				if (isset($grain,$drac_LT3[$set][$param][$grain])){
+				 echo round( $drac_LT3[$set][$param][$grain], 3 ) .',';				 
+				} else {
+				 echo ' ,';
+				}
 			}
 		}
 		echo "\n";

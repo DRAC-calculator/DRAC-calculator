@@ -18,7 +18,7 @@
 
 <p>DRAC aims to:
 	<ul>
-		<li>Provide Ḋ calculation for quartz, feldspar and polymineral samples, over a grain size range of 1 – 5000 μm </li>
+		<li>Provide Ḋ calculation for quartz, feldspar and polymineral samples, over a grain size range of 1 – 10000 μm </li>
 		<li>Be easy to use and provide a clear calculation process, with minimum assumptions and maximum user flexibility. </li>
 		<li>Be an open access research tool, which is continually updated with the latest datasets and tools. </li>
 		<li>Stimulate further Ḋ research. </li>

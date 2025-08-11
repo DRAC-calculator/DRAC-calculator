@@ -1529,14 +1529,23 @@ function drac_outputs() {
             'name' => 'Age (ka)',
             'name_ascii' => 'Age (ka)',
             'description' => 'Age, if De is provided, calculated using the DRAC determined dose rate.',
-            'value' => function($i){  return VALUE( $i, 'TI:52') / VALUE( $i, 'TO:GM');  },
+            'value' => function($i){  
+              if( valid_blank( $i['TI:52'] ) ) {
+                return 'X';
+              } else {
+                return VALUE( $i, 'TI:52') / VALUE( $i, 'TO:GM');  }
+              },
         ),
         'TO:GP' =>  array(
             'name' => 'δAge (ka)',
             'name_ascii' => 'errAge (ka)',
             'description' => 'Age, if De is provided, calculated using the DRAC determined dose rate.',
             'value' => function($i){
-                return factor_sqrt_sum_sqr_ratio( $i, 'TO:GO', 'TO:GN', 'TO:GM', 'TI:53', 'TI:52' );  },
+              if( valid_blank( $i['TI:52'] ) OR valid_blank( $i['TI:53']) ) {
+                return 'X';
+              } else {
+                return factor_sqrt_sum_sqr_ratio( $i, 'TO:GO', 'TO:GN', 'TO:GM', 'TI:53', 'TI:52' );  }
+              },
         ),
 
     );
