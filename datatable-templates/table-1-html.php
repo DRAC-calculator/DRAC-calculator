@@ -37,7 +37,7 @@
 				} else if ( $param == "δUβ" || $param == "δUγ" || $param == "δThγ" ) {
 					echo round( $drac_LT1[$name][$param], 4);
 				} else {
-					echo round( $drac_LT1[$name][$param], 3);
+					echo round( $drac_LT1[$name][$param], 4);
 				}
 				echo '</td>';
 			}
