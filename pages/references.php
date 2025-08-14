@@ -26,7 +26,7 @@
 <li>Guerin, G., Mercier, N., Nathan, R., Adamiec, G., Lefrais, Y., 2012. On the use of the infinite matrix assumption and associated concepts: A critical review. Radiation Measurements, 47, 778-785. </li>
 <li>Kreutzer, S., Dietze, M., Burow, C., Fuchs, M.C., Schmidt, C., Fischer, M., Friedrich, J., Mercier, N., Smedley, R.K., Durcan, J.A., King, G., Fuchs, M., 2016. Luminescence: Comprehensive Luminescence Dating Data Analysis. R package version 0.6.0. <a href="http://CRAN.R-project.org/package=Luminescence">http://CRAN.R-project.org/package=Luminescenc</a></li>
 <li>Liritzis, I., Stamoulis, K., Papachristodoulou, C., Ioannides, K., 2013. A re-evaluation of radiation dose-rate conversion factors. Mediterranean Archaeology and Archaeometry 13, 1-15. </li>
-<li>Martin, L., Mercier, N. and Incerti, S., 2014. Assessment of nuclear data. Radiation measurements, 70, 39-47.</li>
+<li>Martin L., Mercier N. and Incerti S. (2014). Geant4 simulations for sedimentary grains in infinite matrix conditions: The case of alpha dosimetry. Radiation Measurements 70(0): 39-47.</li>
 <li>Mejdahl, V., 1979. Thermoluminescence Dating: Beta-Dose Attenuation in Quartz Grains. Archaeometry 21, 61-72.</li>
 <li>Mejdahl, V., 1987. Internal radioactivity in quartz and feldspar grains. <a href="https://doi.org/10.26034/la.atl.1987.119">Ancient TL 5, 10-17</a>.</li>
 <li>Prescott, J.R. and Hutton, J.T., 1994. Cosmic ray contributions to dose rates for luminescence and ESR dating: Large depths and long-term time variations. Radiation Measurements, 23, 497-500.</li>

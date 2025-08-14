@@ -1331,15 +1331,15 @@ function drac_outputs() {
             'name_ascii' => 'Water corrected gammadoserate (Gy.ka-1)',
             'description' => $water_corrected,
             'value' => function($i){
-             return VALUE( $i, 'TO:FO' ) / ( 1 + LT5( 'Gamma' ) * ( $i['TI:41'] / 100.0 ) );
+           //  return VALUE( $i, 'TO:FO' ) / ( 1 + LT5( 'Gamma' ) * ( $i['TI:41'] / 100.0 ) );
 
-           //   if(valid_blank( $i['TI:5'] ) || valid_blank( $i['TI:6'] ) || valid_blank( $i['TI:7'] ) || valid_blank( $i['TI:8'] ) || valid_blank( $i['TI:9'] ) || valid_blank( $i['TI:10'] ) || valid_blank( $i['TI:27'] ) || valid_blank( $i['TI:28']) ) {
-           //     return ( VALUE( $i, 'TO:AI' ) + VALUE( $i, 'TO:AK' ) +  VALUE( $i, 'TO:AM' ) )
-           //       / ( 1 + LT5( 'Gamma' ) * ( $i['TI:41'] / 100.0 ) );
-           //   } else {
-           //     return ( VALUE( $i, 'TO:AO' ) )
-           //       / ( 1 + LT5( 'Gamma' ) * ( $i['TI:41'] / 100.0 ) );
-           //   }
+              if(valid_blank( $i['TI:5'] ) || valid_blank( $i['TI:6'] ) || valid_blank( $i['TI:7'] ) || valid_blank( $i['TI:8'] ) || valid_blank( $i['TI:9'] ) || valid_blank( $i['TI:10'] ) || valid_blank( $i['TI:27'] ) || valid_blank( $i['TI:28']) ) {
+                return ( VALUE( $i, 'TO:AI' ) + VALUE( $i, 'TO:AK' ) +  VALUE( $i, 'TO:AM' ) )
+                  / ( 1 + LT5( 'Gamma' ) * ( $i['TI:41'] / 100.0 ) );
+              } else {
+                return ( VALUE( $i, 'TO:AO' ) )
+                  / ( 1 + LT5( 'Gamma' ) * ( $i['TI:41'] / 100.0 ) );
+              }
             },
         ),
         'TO:FV' =>  array(
