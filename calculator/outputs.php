@@ -1416,7 +1416,7 @@ function drac_outputs() {
             'name_ascii' => 'Geomagnetic latitude',
             'description' => 'The geomagnetic latitude calculated from the sample latitude and longitude and sampling depth.',
             'value' => function($i){
-                if( valid_blank( $i['TI:43'] ) || floatval($i['TI:43']) == 0  ) {
+                if( valid_blank( $i['TI:43'] ) ) {
                     return 0;
                 } else {
                     $p = pi() / 180;
@@ -1429,14 +1429,14 @@ function drac_outputs() {
             'name_ascii' => 'F',
             'description' => 'The factors required to correct the cosmic dose rate for altitude and geomagnetic latitude (after Prescott and Stefan, 1982).',
             'value' => function($i){
-              return  (valid_blank($i['TI:43']) || floatval($i['TI:43']) == 0) ? 0 : LT6( 'F', round( VALUE( $i, 'TO:GC') ) );  },
+              return  (valid_blank($i['TI:43'])) ? 0 : LT6( 'F', round( VALUE( $i, 'TO:GC') ) );  },
         ),
         'TO:GE' =>  array(
             'name' => 'H',
             'name_ascii' => 'H',
             'description' => 'The factors required to correct the cosmic dose rate for altitude and geomagnetic latitude (after Prescott and Stefan, 1982).',
             'value' => function($i){
-              return (valid_blank($i['TI:43']) || floatval($i['TI:43']) == 0) ? 0 : LT6( 'H', round( VALUE( $i, 'TO:GC') ) );
+              return (valid_blank($i['TI:43'])) ? 0 : LT6( 'H', round( VALUE( $i, 'TO:GC') ) );
             },
         ),
         'TO:GF' =>  array(
@@ -1444,7 +1444,7 @@ function drac_outputs() {
             'name_ascii' => 'J',
             'description' => 'The factors required to correct the cosmic dose rate for altitude and geomagnetic latitude (after Prescott and Stefan, 1982).',
             'value' => function($i){
-              return (valid_blank($i['TI:43']) || floatval($i['TI:43']) == 0) ? 0 : LT6( 'J', round( VALUE( $i, 'TO:GC') ) );
+              return (valid_blank($i['TI:43'])) ? 0 : LT6( 'J', round( VALUE( $i, 'TO:GC') ) );
             },
         ),
         'TO:GG' =>  array(
