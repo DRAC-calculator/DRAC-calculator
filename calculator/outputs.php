@@ -468,7 +468,7 @@ function drac_outputs() {
             'name' => 'U Alpha grain size absorption factor',
             'name_ascii' => 'U Alpha grain size absorption factor',
             'description' => $alpha_grain_size_abs,
-            'value' => function($i){  return lt2_factor( $i, 'Uranium φ(D)' );  },
+            'value' => function($i){ return lt2_factor( $i, 'Uranium φ(D)' );  },
         ),
         'TO:BH' =>  array(
             'name' => 'δU Alpha grain size absorption factor',
@@ -1331,7 +1331,7 @@ function drac_outputs() {
             'name_ascii' => 'Water corrected gammadoserate (Gy.ka-1)',
             'description' => $water_corrected,
             'value' => function($i){
-           //  return VALUE( $i, 'TO:FO' ) / ( 1 + LT5( 'Gamma' ) * ( $i['TI:41'] / 100.0 ) );
+           // return VALUE( $i, 'TO:FO' ) / ( 1 + LT5( 'Gamma' ) * ( $i['TI:41'] / 100.0 ) );
 
               if(valid_blank( $i['TI:5'] ) || valid_blank( $i['TI:6'] ) || valid_blank( $i['TI:7'] ) || valid_blank( $i['TI:8'] ) || valid_blank( $i['TI:9'] ) || valid_blank( $i['TI:10'] ) || valid_blank( $i['TI:27'] ) || valid_blank( $i['TI:28']) ) {
                 return ( VALUE( $i, 'TO:AI' ) + VALUE( $i, 'TO:AK' ) +  VALUE( $i, 'TO:AM' ) )

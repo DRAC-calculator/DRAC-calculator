@@ -91,11 +91,14 @@ function lt4_factor_d($inputs, $type, $set=null ) {
 }
 
 function lt7_factor($inputs, $type) {
-    if( ( strtoupper( $inputs['TI:13'] ) == 'N' ) || ( VALUE( $inputs, 'TI:43' ) > 0.3 ) || valid_blank( VALUE( $inputs, 'TI:43' ) ) ) {
+    if( ( strtoupper( $inputs['TI:31'] ) == 'N' ) || valid_blank( VALUE( $inputs, 'TI:43' ) ) ) {
         return 1;
     } else {
         $d = VALUE( $inputs, 'TI:43' ) * ( 2 / VALUE( $inputs, 'TI:45' ) );
         $d = round( $d * 2, 2) / 2;
+        if( $d > 0.41 ) {
+            return 1;
+        }
         $d = str_pad( $d, 5, '0' );
         return LT7( $type, $d );
     }
