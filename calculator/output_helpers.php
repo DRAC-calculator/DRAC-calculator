@@ -99,7 +99,7 @@ function lt7_factor($inputs, $type) {
         if( $d > 0.41 ) {
             return 1;
         }
-        $d = str_pad( $d, 5, '0' );
+        $d = sprintf("%5.3f",$d);
         return LT7( $type, $d );
     }
 }
