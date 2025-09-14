@@ -1029,11 +1029,7 @@ function drac_outputs() {
             'name_ascii' => 'Etch corrected external errU betadoserate (Gy.ka-1)',
             'description' => $beta_etch_corrected,
             'value' => function($i){
-                if( $i['TI:41'] == 0 ) {
-                    return 0;
-                } else {
                     return factor_sqrt_sum_sqr_ratio( $i, 'TO:EM', 'TO:CN', 'TO:CM', 'TO:DZ', 'TO:DY' );
-                }
             },
         ),
         'TO:EO' =>  array(
@@ -1047,11 +1043,7 @@ function drac_outputs() {
             'name_ascii' => 'Etch corrected external errTh betadoserate (Gy.ka-1)',
             'description' => $beta_etch_corrected,
             'value' => function($i){
-                if( $i['TI:41'] == 0 ) {
-                    return 0;
-                } else {
                     return factor_sqrt_sum_sqr_ratio( $i, 'TO:EO', 'TO:CP', 'TO:CO', 'TO:EB', 'TO:EA' );
-                }
             },
         ),
         'TO:EQ' =>  array(
@@ -1065,11 +1057,7 @@ function drac_outputs() {
             'name_ascii' => 'Etch corrected external errK betadoserate (Gy.ka-1)',
             'description' => $beta_etch_corrected,
             'value' => function($i){
-                if( $i['TI:41'] == 0 ) {
-                    return 0;
-                } else {
                     return factor_sqrt_sum_sqr_ratio( $i, 'TO:EQ', 'TO:CR', 'TO:CQ', 'TO:ED', 'TO:EC' );
-                }
             },
         ),
         'TO:ES' =>  array(
@@ -1285,14 +1273,14 @@ function drac_outputs() {
             'value' => function($i){  return VALUE( $i, 'TO:AV' );  },
         ),
         'TO:FQ' =>  array(
-            'name' => 'Water corrected Ḋα',
-            'name_ascii' => 'Water corrected alphadoserate',
+            'name' => 'Water corrected Ḋα (Gy.ka-1)',
+            'name_ascii' => 'Water corrected alphadoserate (Gy.ka-1)',
             'description' => $water_corrected,
             'value' => function($i){  return VALUE( $i, 'TO:FK' ) / ( 1 + LT5( 'Alpha' ) * ( $i['TI:41'] / 100.0 ) );  },
         ),
         'TO:FR' =>  array(
-            'name' => 'Water corrected δḊα',
-            'name_ascii' => 'Water corrected erralphadoserate',
+            'name' => 'Water corrected δḊα (Gy.ka-1)',
+            'name_ascii' => 'Water corrected erralphadoserate (Gy.ka-1)',
             'description' => $water_corrected,
             'value' => function($i){
                 if( VALUE( $i, 'TO:FQ' ) == 0 ) {
@@ -1306,14 +1294,14 @@ function drac_outputs() {
            },
         ),
         'TO:FS' =>  array(
-            'name' => 'Water corrected Ḋβ',
-            'name_ascii' => 'Water corrected betadoserate',
+            'name' => 'Water corrected Ḋβ (Gy.ka-1)',
+            'name_ascii' => 'Water corrected betadoserate (Gy.ka-1)',
             'description' => $water_corrected,
             'value' => function($i){  return VALUE( $i, 'TO:FM' ) / ( 1 + LT5( 'Beta' ) * ( $i['TI:41'] / 100.0 ) );  },
         ),
         'TO:FT' =>  array(
-            'name' => 'Water corrected δḊβ',
-            'name_ascii' => 'Water corrected errbetadoserate',
+            'name' => 'Water corrected δḊβ (Gy.ka-1)',
+            'name_ascii' => 'Water corrected errbetadoserate (Gy.ka-1)',
             'description' => $water_corrected,
             'value' => function($i){
                 if( VALUE( $i, 'TO:FS' ) == 0 ) {
