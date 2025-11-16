@@ -26,14 +26,13 @@
 
 <h2>Acknowledgements</h2>
 
-<p>This project has been funded by an Outreach Award from the Quaternary Research Association (QRA) and the authors gratefully acknowledge this support.</p>
+<p>This project has been funded by an Outreach Award from the <a href="https://www.qra.org.uk/">Quaternary Research Association (QRA)</a> and the authors gratefully acknowledge this support.</p>
 
 <p>
 	<img src="<?php DRAC_URL ?>images/QRA.jpg" alt="" class="drac_img_row">
 	<img src="<?php DRAC_URL ?>images/Oxford Logo.gif" alt="" class="drac_img_row">
+	<img src="<?php DRAC_URL ?>images/aber_uni_logo_web.png" alt="" class="drac_img_row">
 	<img src="<?php DRAC_URL ?>images/C3W_sq_text.png" alt="" class="drac_img_row">
-</p>
-<p>
 	<img src="<?php DRAC_URL ?>images/unilogo_bleu.png" alt="" class="drac_img_row">
 	<img src="<?php DRAC_URL ?>images/SNF_RGB_E_POS.png" alt="" class="drac_img_row">
 </p>
