@@ -8,7 +8,7 @@
 
 <p>DRAC has been designed to be straightforward to use and useful to the trapped charge dating community. Dose rate data is input into DRAC using a downloadable template and the output is generated in a .csv file, which can be downloaded and saved by the user. Details of the inputs required by DRAC and the outputs produced are given in the <a href="#drac_inputs">DRAC inputs</a> and <a href="#drac_outputs">DRAC outputs</a> tables below.</p>
 
-<p>Details of the calculation process can be found in the accompanying journal article in Quaternary Geochronology. For those with access to this journal, it can be accessed at <a href="<?php echo DRAC_URL ?>downloads/Durcan_et_al.,_2015. DRAC_dose_rate_and_age_calculator_for_trapped_charge_dating._Quaternary_Geochronology_28,_54-61.pdf">Durcan et al., 2015</a>. Alternatively, a copy of the accepted author manuscript is available <a href="<?php echo DRAC_URL ?>downloads/Durcan_et_al.,_2015. DRAC_dose_rate_and_age_calculator_for_trapped_charge_dating._Accepted_Manuscript.pdf">here</a>.</p>
+<p>Details of the calculation process can be found in the accompanying journal article in Quaternary Geochronology by <a href="<?php echo DRAC_URL ?>downloads/Durcan_et_al.,_2015. DRAC_dose_rate_and_age_calculator_for_trapped_charge_dating._Quaternary_Geochronology_28,_54-61.pdf">Durcan et al., 2015</a>.</p>
 
 <p>In order to calculate a Ḋ using DRAC, simply:
 <ol>

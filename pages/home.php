@@ -1,6 +1,6 @@
 <?php require(DRAC_ROOT . '/main/html_helpers.php'); ?>
 
-<h1>DRAC &mdash; Home</h1>
+<h1>DRAC v1.3 &mdash; Home</h1>
 
 <?php echo drac_menu_html(); ?>
 
