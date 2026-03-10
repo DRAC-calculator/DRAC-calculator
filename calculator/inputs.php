@@ -6,7 +6,6 @@ function drac_input_columns_count() {
 }
 
 function drac_inputs() {
-	global $drac_LT2;
     // Common descriptions used across multiple items
     $external = 'Radionuclide concentrations in parts per million for Uranium, Thorium and Rubidium and % for Potassium. Inputs must be 0 or positive and should not be left blank.';
     $internal = 'Internal radionuclide concentrations in parts per million for Uranium, Thorium and Rubidium and % for Potassium. Inputs must be 0 or positive and should not be left blank.';
@@ -279,7 +278,7 @@ function drac_inputs() {
             'name' => 'Grain size min (µm)',
             'name_ascii' => 'Grain size min (microns)',
             'description' => 'The grain size range analysed. DRAC can be used for the grain size ranges between 1 and 1000 µm for all attenuation factors. For grain sizes above 1000 µm check the range covered by both alpha and beta attenuation data sets (TI:34 and TI:35). The input should not be left blank.',
-            'validate' => function($val, $inputs){ 
+            'validate' => function($val, $inputs){
                if ((alpha_attenuation_value_present($inputs[33], $val)) AND (beta_attenuation_value_present($inputs[34],$val))) {
                     return true;
                 } else {
@@ -293,7 +292,7 @@ function drac_inputs() {
             'name' => 'Grain size max (µm)',
             'name_ascii' => 'Grain size max (microns)',
             'description' => 'The grain size range analysed. DRAC can be used for the grain size ranges between 1 and 1000 µm for all attenuation factors. For grain sizes above 1000 µm check the range covered by both alpha and beta attenuation data sets (TI:34 and TI:35). The input should not be left blank.',
-            'validate' => function($val, $inputs){ 
+            'validate' => function($val, $inputs){
                if ((alpha_attenuation_value_present($inputs[33], $val)) AND (beta_attenuation_value_present($inputs[34],$val))) {
                     return true;
                 } else {

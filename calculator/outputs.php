@@ -1517,7 +1517,7 @@ function drac_outputs() {
             'name' => 'Age (ka)',
             'name_ascii' => 'Age (ka)',
             'description' => 'Age, if De is provided, calculated using the DRAC determined dose rate.',
-            'value' => function($i){  
+            'value' => function($i){
               if( valid_blank( $i['TI:52'] ) ) {
                 return 'X';
               } else {
