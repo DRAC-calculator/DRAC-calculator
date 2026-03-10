@@ -1,10 +1,12 @@
 <?php
-// run:   phpunit test/helpers_test.php 
+// run:   phpunit test/helpers_test.php
 
 define('DRAC_ROOT', dirname(__FILE__) . '/..' );
 require(DRAC_ROOT . '/calculator/validation_helpers.php');
 
-class HelpersTest extends PHPUnit_Framework_TestCase {
+use PHPUnit\Framework\TestCase;
+
+class helpers_test extends TestCase {
 
      public function test__within_range() {
         $this->assertEquals(within_range(0, 10, '0'), true);

@@ -5,9 +5,19 @@ define('DRAC_ROOT', dirname(__FILE__) . '/..' );
 define('DRAC_VERSION', 'XXX' );
 require(DRAC_ROOT . '/calculator/drac.php');
 
-class DracTest extends PHPUnit_Framework_TestCase
-{
+use PHPUnit\Framework\TestCase;
+
+class drac_test extends TestCase {
+
     function initDrac($params = array()) {
+
+      // Require your lookup tables
+       require DRAC_ROOT . '/calculator/lookup_tables.php';
+       $GLOBALS['drac_LT1'] = $drac_LT1 ?? [];
+       $GLOBALS['drac_LT2'] = $drac_LT2 ?? [];
+       $GLOBALS['drac_LT3'] = $drac_LT3 ?? [];
+       $GLOBALS['drac_LT4'] = $drac_LT4 ?? [];
+
         $defaults = array(
           'name' => 'hello',
           'table' => 'TestProject Aber/136-3-1 Q AdamiecAitken1998 3.393 0.506 14.471 1.685 1.196 0.135 0 0 N X X X X X X X X X X X 1.83 0.06 X X X X N 90 125 Bell1980 Mejdahl1979 9 10 X X X 5 2 2.22 0.05 1.8 0.1 29.19 72.88 148 X X 16.49 0.62',
@@ -110,6 +120,7 @@ class DracTest extends PHPUnit_Framework_TestCase
     private function assertOutputRow( $expected, $input, $row=10, $header=9 ) {
         $calc = $this->initDrac( array('table' => $input) );
         $output_data = explode("\n", $calc->run_calc());
+        var_dump($output_data);
         $output = $output_data[$row];
 
         $expected_array = explode(",", $expected);
