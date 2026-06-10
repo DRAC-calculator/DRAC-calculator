@@ -71,9 +71,8 @@ class Drac {
 
     public function run_calc() {
         if( empty( $this->data ) ) {
-            assert( $this->valid() );
+            $this->valid();
         }
-        assert( !empty( $this->data ) );
 
         $output = "";
 
@@ -109,7 +108,7 @@ class Drac {
         }
         $output .= "\n";
 
-        foreach( $this->data as $input_row ) {
+        foreach( $this->data ?? [] as $input_row ) {
             drac_clear_value_cache();
 
             foreach( drac_csv_outputs() as $t ) {

@@ -109,11 +109,33 @@ class drac_test extends TestCase {
         $this->assertOutputRow( $expected, $input );
     }
 
+    public function testRunCalc_Quartz_Guerinetal2011() {
+        $input = "156_LL1 Quartz Q Guerinetal2011 0.446 0.06 1.674 0.196 0.219 0.019 0 0 Y X X X X X X X X X X X 0.282 0.011 X X 0.03 0.005 N 180 211 Brennanetal1991 Guerinetal2012-Q 10 12 Bell1979 0 0 3 2 1 0.1 1.8 0.1 31 4 740 X X 0.027 0.002";
+        $expected = "156_LL1,Quartz,Q,0,0,0.228,0.011,0.178,0.013,0,0,0,0,0.211,0.021,0.618,0.027,0.03,0.005,0.648,0.027,0.027,0.002,0.042,0.004,,,156_LL1,Quartz,Q,Guerinetal2011,0.446,0.06,1.674,0.196,0.219,0.019,0,0,Y,X,X,X,X,X,X,X,X,X,X,X,0.282,0.011,X,X,0.03,0.005,N,180,211,Brennanetal1991,Guerinetal2012-Q,10,12,Bell1979,0,0,3,2,1,0.1,1.8,0.1,31,4,740,X,X,0.027,0.002,,,1.247,0.168,0.065,0.009,0.05,0.007,1.235,0.145,0.046,0.006,0.08,0.009,0.175,0.015,0.055,0.005,-0,-0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0.05,0.007,0.08,0.009,0.055,0.005,0.185,0.013,2.481,0.221,0.282,0.011,0.185,0.013,0,0,0,0,0.083,0.008,0.09,0.008,0.087,0.008,0.917,0.008,0.91,0.008,0.103,0.017,0.112,0.016,0,0,0,0,0,0,0.859,0.007,0.803,0.009,0.927,0.006,0.318,0.022,0.877,0.007,0.141,0.007,0.197,0.009,0.073,0.006,0.682,0.022,0.056,0.008,0.037,0.005,0.162,0.014,-0,-0,0.247,0.01,0,0,0,0,0,0,0,0,0.255,0.045,0.345,0.043,0.299,0.044,1.204,0.012,1.216,0.014,0.026,0.006,0.038,0.007,0,0,0,0,0,0,0.931,0.004,0.909,0.006,1,0,0.957,0.003,1.563,0.03,1.388,0.032,1,0,0.052,0.007,0.034,0.004,0.162,0.014,0.237,0.009,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0.237,0.009,0.185,0.013,0,0,0.228,0.011,0.178,0.013,0,0,0,0,0.185,0.021,33.717,0.25,4.11,0.745,0.211,0.021,0.618,0.027,0.03,0.005,0.648,0.027,0.042,0.004,";
+        $this->assertOutputRow( $expected, $input );
+    }
+
     // public function testRunCalc_XXXX() {
     //     $input = "XXXX";
     //     $expected = "XXXX";
     //     $this->assertOutputRow( $expected, $input );
     // }
+
+    public function testValidPopulatesData() {
+        // Covers removed assert(!empty($this->data)): valid() must populate $this->data
+        $calc = $this->initDrac();
+        $this->assertNull($calc->data);
+        $calc->valid();
+        $this->assertNotEmpty($calc->data);
+    }
+
+    public function testRunCalcNotSubmittedProducesNoDataRows() {
+        // Covers removed assert($this->valid()): run_calc() on an unsubmitted Drac
+        // has no data to process and produces no data rows in the output
+        $calc = new Drac(array(), array());
+        $output_lines = explode("\n", $calc->run_calc());
+        $this->assertEmpty(trim($output_lines[10] ?? ''));
+    }
 
 
     private function assertOutputRow( $expected, $input, $row=10, $header=9 ) {

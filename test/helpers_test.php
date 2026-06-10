@@ -45,4 +45,22 @@ class helpers_test extends TestCase {
         $this->assertEquals(less_than(1, '2aaa'), false);
     }
 
+    public function test__valid_blank() {
+        $this->assertEquals(valid_blank('X'), true);
+        $this->assertEquals(valid_blank('x'), false);
+        $this->assertEquals(valid_blank(''), false);
+        $this->assertEquals(valid_blank('0'), false);
+        $this->assertEquals(valid_blank('XX'), false);
+    }
+
+    public function test__valid_blank_input() {
+        $optional = ['required' => false];
+        $required = ['required' => true];
+        $this->assertEquals(valid_blank_input($optional, 'X'), true);
+        $this->assertEquals(valid_blank_input($optional, 'x'), false);
+        $this->assertEquals(valid_blank_input($optional, ''), false);
+        $this->assertEquals(valid_blank_input($optional, '0'), false);
+        $this->assertEquals(valid_blank_input($required, 'X'), false);
+    }
+
 }

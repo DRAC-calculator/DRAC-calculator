@@ -1,3 +1,28 @@
 demo.php
 index2.php
 
+# Dependencies
+vendor/
+
+# Local overrides
+local/
+.env
+.env.local
+
+# AI tools
+.claude/
+.codex/
+.cursor/
+.aider*
+.copilot/
+CLAUDE.md
+AGENTS.md
+
+# PHPUnit
+.phpunit.result.cache
+phpunit.xml
+
+# Logs and caches
+*.log
+.php-cs-fixer.cache
+
