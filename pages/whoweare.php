@@ -1,4 +1,4 @@
-<?php require(DRAC_ROOT . '/main/html_helpers.php'); ?>
+<?php require __DIR__ . '/../main/html_helpers.php'; ?>
 
 <h1>DRAC &mdash; Who we are</h1>
 

@@ -1,8 +1,7 @@
 <?php
 // run:   phpunit test/helpers_test.php
 
-define('DRAC_ROOT', dirname(__FILE__) . '/..' );
-require(DRAC_ROOT . '/calculator/validation_helpers.php');
+require_once __DIR__ . '/../calculator/validation_helpers.php';
 
 use PHPUnit\Framework\TestCase;
 

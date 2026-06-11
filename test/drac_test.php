@@ -1,9 +1,7 @@
 <?php
 // run:   phpunit test/drac_test.php
 
-define('DRAC_ROOT', dirname(__FILE__) . '/..' );
-define('DRAC_VERSION', 'XXX' );
-require(DRAC_ROOT . '/calculator/drac.php');
+require_once __DIR__ . '/../calculator/drac.php';
 
 use PHPUnit\Framework\TestCase;
 
@@ -12,7 +10,7 @@ class drac_test extends TestCase {
     function initDrac($params = array()) {
 
         // Require your lookup tables
-        require DRAC_ROOT . '/calculator/lookup_tables.php';
+        require __DIR__ . '/../calculator/lookup_tables.php';
         foreach (['drac_LT1','drac_LT2','drac_LT3','drac_LT4','drac_LT5','drac_LT6','drac_LT7'] as $var) {
             $GLOBALS[$var] = ${$var} ?? [];
         }
@@ -24,6 +22,10 @@ class drac_test extends TestCase {
         $globals = array(
         );
         return new Drac($globals, array_merge($defaults, $params));
+    }
+
+    public function testVersion() {
+        $this->assertEquals('1.3', Drac::VERSION);
     }
 
     public function testValid() {
@@ -129,12 +131,10 @@ class drac_test extends TestCase {
         $this->assertNotEmpty($calc->data);
     }
 
-    public function testRunCalcNotSubmittedProducesNoDataRows() {
-        // Covers removed assert($this->valid()): run_calc() on an unsubmitted Drac
-        // has no data to process and produces no data rows in the output
+    public function testRunCalcThrowsWhenNotValid() {
+        $this->expectException(\RuntimeException::class);
         $calc = new Drac(array(), array());
-        $output_lines = explode("\n", $calc->run_calc());
-        $this->assertEmpty(trim($output_lines[10] ?? ''));
+        $calc->run_calc();
     }
 
 

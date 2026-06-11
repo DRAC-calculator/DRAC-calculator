@@ -1,5 +1,5 @@
-<?php require(DRAC_ROOT . '/main/html_helpers.php'); ?>
-<?php require(DRAC_ROOT . '/calculator/lookup_tables.php'); ?>
+<?php require __DIR__ . '/../main/html_helpers.php'; ?>
+<?php require __DIR__ . '/../calculator/lookup_tables.php'; ?>
 
 <h1>DRAC &mdash; Data Tables</h1>
 
@@ -52,7 +52,7 @@
     $datatableids = array( 1, 2, 3, 4, 5, 6, 7 );
 
     if( in_array( $datatableid, $datatableids ) ) {
-        require_once(DRAC_ROOT . '/datatable-templates/table-' . $datatableid . '-html.php');
+        require_once __DIR__ . '/../datatable-templates/table-' . $datatableid . '-html.php';
     } else {
 
     }

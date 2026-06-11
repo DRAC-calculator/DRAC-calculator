@@ -1,4 +1,4 @@
-<?php require(DRAC_ROOT . '/main/html_helpers.php'); ?>
+<?php require __DIR__ . '/../main/html_helpers.php'; ?>
 
 <h1>DRAC &mdash; Calculator</h1>
 
@@ -8,11 +8,11 @@
 
 <p>DRAC will return an error if fields are not correctly populated. If an error message is returned, please double-check your data input and refer to the <a href="<?php echo DRAC_URL ?>?show=userguide">user guide</a>.</p>
 
-<?php require(DRAC_ROOT . '/main/form.php'); ?>
+<?php require __DIR__ . '/../main/form.php'; ?>
 
 <p>Users should note that all calculations in DRAC are made prior to rounding, although all values reported in the output table are given to 3 decimal places. Users may therefore note a small discrepancy between the age reported by DRAC and the value calculated when dividing De by Ḋ using the values from the output table. This does not represent an error in calculation, but rather the effects of rounding. </p>
 
-<p>DRAC v<?php echo DRAC_VERSION; ?> &mdash;  Release date: November 2025</p>
+<p>DRAC v<?php echo Drac::VERSION; ?> &mdash;  Release date: November 2025</p>
 <p>DRAC source code is available at <a href="https://github.com/DRAC-calculator/DRAC-calculator">github.com/DRAC-calculator/DRAC-calculator</a> and is licensed under GPLv3.</p>
 
 <p>

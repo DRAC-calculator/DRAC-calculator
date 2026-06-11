@@ -4,13 +4,11 @@
     // ini_set('display_errors', 1);
     // error_reporting(~0);
 
-    define('DRAC_ROOT', dirname(__FILE__) . '/..' );
     define('DRAC_URL', '' );
-    define('DRAC_VERSION', '1.3' );
 
     global $drac_calc;
 
-    require_once(DRAC_ROOT . '/calculator/drac.php');
+    require_once __DIR__ . '/../calculator/drac.php';
 
     $current = empty($_GET['show']) ? '' : $_GET['show'];
     if( $current == 'calculator' ) {
@@ -39,7 +37,7 @@
             header("Content-Disposition: attachment; filename=datatable-" .  $datatableid . ".csv" );
             header("Pragma: no-cache");
             header("Expires: 0");
-            require_once(DRAC_ROOT . '/datatable-templates/table-' . $datatableid . '-csv.php');
+            require_once __DIR__ . '/../datatable-templates/table-' . $datatableid . '-csv.php';
             exit;
         }
     }

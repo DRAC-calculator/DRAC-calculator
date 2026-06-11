@@ -1,5 +1,5 @@
 <?php
-require(DRAC_ROOT . '/calculator/lookup_tables.php');
+require_once __DIR__ . '/lookup_tables.php';
 
 function LT1($set, $param) {
     global $drac_LT1;

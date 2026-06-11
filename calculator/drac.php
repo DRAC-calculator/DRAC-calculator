@@ -1,9 +1,12 @@
 <?php
-require(DRAC_ROOT . '/calculator/inputs.php');
-require(DRAC_ROOT . '/calculator/outputs.php');
-require(DRAC_ROOT . '/calculator/csv_outputs.php');
+require_once __DIR__ . '/version.php';
+require_once __DIR__ . '/inputs.php';
+require_once __DIR__ . '/outputs.php';
+require_once __DIR__ . '/csv_outputs.php';
 
 class Drac {
+
+    const VERSION = DRAC_VERSION;
 
     public $values;
     public $submitted;
@@ -18,7 +21,7 @@ class Drac {
        $this->data = null;
 
        $filename =  str_replace(' ', '_', trim( $this->values['name'] ));
-       $this->output_file_name =  $filename . '_' . time() . '_DRACv' . DRAC_VERSION .'.csv';
+       $this->output_file_name =  $filename . '_' . time() . '_DRACv' . self::VERSION .'.csv';
     }
 
     public function value($field) {
@@ -70,13 +73,16 @@ class Drac {
 
 
     public function run_calc() {
-        if( empty( $this->data ) ) {
-            $this->valid();
+        if (!$this->valid()) {
+            throw new \RuntimeException('Cannot run calculation: inputs are invalid.');
+        }
+        if (empty($this->data)) {
+            throw new \RuntimeException('Cannot run calculation: no data rows.');
         }
 
         $output = "";
 
-        $output .= "DRAC " . DRAC_VERSION . "\n";
+        $output .= "DRAC " . self::VERSION . "\n";
         $output .= "\n";
         $output .= "Full details of the inputs required for a DRAC dose rate calculation and the calculation process can be found in the paper and the DRAC website (www.aber.ac.uk/alrl/drac).\n";
         $output .= "\n";

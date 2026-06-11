@@ -1,5 +1,5 @@
 <?php
-require(DRAC_ROOT . '/calculator/output_helpers.php');
+require_once __DIR__ . '/output_helpers.php';
 
 function drac_outputs() {
     // Common descriptions used across multiple items
