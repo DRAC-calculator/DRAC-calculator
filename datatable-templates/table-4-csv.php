@@ -1,5 +1,5 @@
 <?php
-	global $drac_LT4;
+	$drac_LT4 = LookupTables::lt4();
 	$sets = array_keys( $drac_LT4 );
 	$params = array_keys( $drac_LT4[$sets[0]] );
 	$etchs = array_keys( $drac_LT4[$sets[0]][$params[0]] );

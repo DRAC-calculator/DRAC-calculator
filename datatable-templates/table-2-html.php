@@ -1,7 +1,7 @@
 <h3 id="table2">2) Grain size attenuation factors - alpha</h3>
 <table>
 	<?php
-		global $drac_LT2;
+		$drac_LT2 = LookupTables::lt2();
 		$sets = array_keys( $drac_LT2 );
 		$params = array_keys( $drac_LT2[$sets[0]] );
 		$grains = array_keys( $drac_LT2[$sets[0]][$params[0]] );

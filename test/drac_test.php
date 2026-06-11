@@ -9,12 +9,6 @@ class drac_test extends TestCase {
 
     function initDrac($params = array()) {
 
-        // Require your lookup tables
-        require __DIR__ . '/../calculator/lookup_tables.php';
-        foreach (['drac_LT1','drac_LT2','drac_LT3','drac_LT4','drac_LT5','drac_LT6','drac_LT7'] as $var) {
-            $GLOBALS[$var] = ${$var} ?? [];
-        }
-
         $defaults = array(
           'name' => 'hello',
           'table' => 'TestProject Aber/136-3-1 Q AdamiecAitken1998 3.393 0.506 14.471 1.685 1.196 0.135 0 0 N X X X X X X X X X X X 1.83 0.06 X X X X N 90 125 Bell1980 Mejdahl1979 9 10 X X X 5 2 2.22 0.05 1.8 0.1 29.19 72.88 148 X X 16.49 0.62',

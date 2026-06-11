@@ -2,45 +2,38 @@
 require_once __DIR__ . '/lookup_tables.php';
 
 function LT1($set, $param) {
-    global $drac_LT1;
     $set = strtolower( $set );
-    return $drac_LT1[$set][$param];
+    return LookupTables::lt1()[$set][$param];
 }
 
 function LT2($set, $name, $grain) {
-    global $drac_LT2;
     $set = strtolower( $set );
     $grain = intval($grain);
-    return $drac_LT2[$set][$name][$grain];
+    return LookupTables::lt2()[$set][$name][$grain];
 }
 
 function LT3($set, $name, $grain) {
-    global $drac_LT3;
     $set = strtolower( $set );
     $grain = intval($grain);
-    return $drac_LT3[$set][$name][$grain];
+    return LookupTables::lt3()[$set][$name][$grain];
 }
 
 function LT4($set, $name, $depth) {
-    global $drac_LT4;
     $set = strtolower( $set );
     $depth = intval($depth);
-    return $drac_LT4[$set][$name][$depth];
+    return LookupTables::lt4()[$set][$name][$depth];
 }
 
 function LT5($name) {
-    global $drac_LT5;
-    return $drac_LT5[$name];
+    return LookupTables::lt5()[$name];
 }
 
 function LT6($name, $value) {
-    global $drac_LT6;
-    return $drac_LT6[$name][$value];
+    return LookupTables::lt6()[$name][$value];
 }
 
 function LT7($name, $value) {
-    global $drac_LT7;
-    return $drac_LT7[$name][$value];
+    return LookupTables::lt7()[$name][$value];
 }
 
 function lt1_convert($inputs, $param, $a) {

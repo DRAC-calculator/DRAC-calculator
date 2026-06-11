@@ -6,7 +6,7 @@
 
 <table>
 	<?php
-		global $drac_LT6;
+		$drac_LT6 = LookupTables::lt6();
 
 		$sets = array_keys( $drac_LT6 );
 		$params = array_keys( $drac_LT6[$sets[0]] );

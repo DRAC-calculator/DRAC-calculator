@@ -1,5 +1,5 @@
 <?php require __DIR__ . '/../main/html_helpers.php'; ?>
-<?php require __DIR__ . '/../calculator/lookup_tables.php'; ?>
+<?php require_once __DIR__ . '/../calculator/lookup_tables.php'; ?>
 
 <h1>DRAC &mdash; Data Tables</h1>
 

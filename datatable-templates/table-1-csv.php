@@ -1,5 +1,5 @@
 <?php
-	global $drac_LT1;
+	$drac_LT1 = LookupTables::lt1();
 	$names = array_keys( $drac_LT1 );
 	$names_pres = array(
 		'cresswelletal2018' => 'Cresswelletal2018',
