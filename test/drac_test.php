@@ -131,6 +131,20 @@ class drac_test extends TestCase {
         $this->assertNotEmpty($calc->data);
     }
 
+    public function testValidationResultIsCached() {
+        $calc = $this->initDrac();
+        $prop = new \ReflectionProperty(Drac::class, 'validationErrors');
+
+        $this->assertNull($prop->getValue($calc));     // not yet computed
+
+        $calc->fieldValid('table');
+        $this->assertSame('', $prop->getValue($calc)); // computed and cached (no errors)
+
+        $calc->valid();
+        $calc->fieldErrorMessage('table');
+        $this->assertSame('', $prop->getValue($calc)); // cache untouched by subsequent calls
+    }
+
     public function testRunCalcThrowsWhenNotValid() {
         $this->expectException(\RuntimeException::class);
         $calc = new Drac(array(), array());

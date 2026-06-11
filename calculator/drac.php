@@ -12,6 +12,7 @@ class Drac {
     public $submitted;
 	public $data;
 	public $output_file_name;
+    private ?string $validationErrors = null;
 
     function __construct($globals, $params) {
        $this->submitted = (count($params) > 0);
@@ -142,6 +143,10 @@ class Drac {
     }
 
     private function validate_table_error_messages($text) {
+        if ($this->validationErrors !== null) {
+            return $this->validationErrors;
+        }
+
         $errors = "";
         if(empty($text)) { $errors .= "Data table must not be blank.\n"; }
 
@@ -186,7 +191,7 @@ class Drac {
 
             array_push( $this->data, $data_row );
         }
-        // print_r($errors);
+        $this->validationErrors = $errors;
         return $errors;
     }
 
