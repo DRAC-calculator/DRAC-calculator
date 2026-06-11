@@ -13,9 +13,7 @@ class drac_test extends TestCase {
           'name' => 'hello',
           'table' => 'TestProject Aber/136-3-1 Q AdamiecAitken1998 3.393 0.506 14.471 1.685 1.196 0.135 0 0 N X X X X X X X X X X X 1.83 0.06 X X X X N 90 125 Bell1980 Mejdahl1979 9 10 X X X 5 2 2.22 0.05 1.8 0.1 29.19 72.88 148 X X 16.49 0.62',
         );
-        $globals = array(
-        );
-        return new Drac($globals, array_merge($defaults, $params));
+        return new Drac(array_merge($defaults, $params));
     }
 
     public function testVersion() {
@@ -33,7 +31,7 @@ class drac_test extends TestCase {
         $this->assertEquals($calc->errors(), true);
     }
     public function testNotSubmitted() {
-        $calc =  new Drac(array(), array());
+        $calc =  new Drac(array());
         $this->assertEquals($calc->valid(), false);
         $this->assertEquals($calc->errors(), false);
     }
@@ -141,7 +139,7 @@ class drac_test extends TestCase {
 
     public function testRunCalcThrowsWhenNotValid() {
         $this->expectException(\RuntimeException::class);
-        $calc = new Drac(array(), array());
+        $calc = new Drac(array());
         $calc->run_calc();
     }
 

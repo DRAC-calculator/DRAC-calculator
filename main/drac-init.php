@@ -13,9 +13,8 @@
     $current = empty($_GET['show']) ? '' : $_GET['show'];
     if( $current == 'calculator' ) {
 
-        $globals = array();
         $drac_data = (empty($_POST["drac_data"]) ? array() : $_POST["drac_data"]);
-        $drac_calc = new Drac($globals, $drac_data);
+        $drac_calc = new Drac($drac_data);
 
         if( $drac_calc->valid() ) {
             header("Content-type: text/csv");

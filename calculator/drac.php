@@ -14,7 +14,7 @@ class Drac {
 	public $output_file_name;
     private ?string $validationErrors = null;
 
-    function __construct($globals, $params) {
+    function __construct($params) {
        $this->submitted = (count($params) > 0);
        $this->values = array();
        $this->values['name'] = empty($params['name']) ? '' : trim($params['name']);
