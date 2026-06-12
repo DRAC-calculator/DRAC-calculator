@@ -8,72 +8,50 @@ class Drac {
 
     const VERSION = DRAC_VERSION;
 
-    public $values;
-    public $submitted;
-	public $data;
-	public $output_file_name;
+    public array $data;
     private ?string $validationErrors = null;
+    private array $rowFieldErrors = [];
 
-    function __construct($params) {
-       $this->submitted = (count($params) > 0);
-       $this->values = array();
-       $this->values['name'] = empty($params['name']) ? '' : trim($params['name']);
-       $this->values['table'] = empty($params['table']) ? '' : trim($params['table']);
-       $this->data = null;
-
-       $filename =  str_replace(' ', '_', trim( $this->values['name'] ));
-       $this->output_file_name =  $filename . '_' . time() . '_DRACv' . self::VERSION .'.csv';
-    }
-
-    public function value($field) {
-        return $this->values[$field];
-    }
-
-    public function fieldValid($field) {
-        if(!$this->submitted) { return true; }
-        if($field == 'table') {
-            return $this->validate_table_error_messages($this->values[$field]) == "";
+    public function __construct(array $input) {
+        if (isset($input['TI:1'])) {
+            $this->data = [$this->_normalizeKeyedRow($input)];
+        } else {
+            $this->data = array_map([$this, '_normalizeKeyedRow'], array_values($input));
         }
-        if($field == 'name') {
-            return !empty($this->values[$field]);
+    }
+
+    public static function inputs(): array {
+        return drac_inputs();
+    }
+
+    public function valid(): bool {
+        return $this->_validateKeyedErrors() === '';
+    }
+
+    public function errors(): bool {
+        return !$this->valid();
+    }
+
+    public function fieldErrors(): array {
+        $this->_validateKeyedErrors();
+        return count($this->rowFieldErrors) === 1
+            ? $this->rowFieldErrors[0]
+            : $this->rowFieldErrors;
+    }
+
+    public function fieldHasErrors(string $field): bool {
+        $this->_validateKeyedErrors();
+        foreach ($this->rowFieldErrors as $rowErrors) {
+            if (isset($rowErrors[$field])) return true;
         }
-        $field_info = $this->drac_inputs($field);
-        $validate_func = $field_info['validate'];
-        return $validate_func($this->values[$field]);
+        return false;
     }
 
-    public function fieldErrorMessage($field) {
-        if($field == 'table') {
-            return $this->validate_table_error_messages($this->value($field));
-        }
-        if($field == 'name') {
-            return 'Name must not be blank.';
-        }
-        $field_info = $this->drac_inputs($field);
-        return $field_info['error_message'];
+    public function validationErrorDetails(): string {
+        return $this->_validateKeyedErrors();
     }
 
-    public function errorMessage() {
-        return $this->valid() ? "" : "ERROR: Some fields were invalid.";
-    }
-
-    public function valid() {
-        $output = $this->submitted;
-
-        $validate_func = function($val){ return !empty($val); };
-        $output = $output && $validate_func($this->values['name']);
-
-        $output = $output && ($this->validate_table_error_messages($this->values['table']) == "");
-
-        return $output;
-    }
-
-    public function errors() {
-        return $this->submitted && !$this->valid();
-    }
-
-
-    public function run_calc() {
+    public function calculate(): array {
         if (!$this->valid()) {
             throw new \RuntimeException('Cannot run calculation: inputs are invalid.');
         }
@@ -81,7 +59,19 @@ class Drac {
             throw new \RuntimeException('Cannot run calculation: no data rows.');
         }
 
-        $output = "";
+        $rows = array_map([$this, '_computeRow'], $this->data);
+        return count($rows) === 1 ? $rows[0] : $rows;
+    }
+
+    public function toCsv(): string {
+        if (!$this->valid()) {
+            throw new \RuntimeException('Cannot run calculation: inputs are invalid.');
+        }
+        if (empty($this->data)) {
+            throw new \RuntimeException('Cannot run calculation: no data rows.');
+        }
+
+        $output = '';
 
         $output .= "DRAC " . self::VERSION . "\n";
         $output .= "\n";
@@ -92,7 +82,7 @@ class Drac {
         $output .= "DRAC Highlights,,,,,,,,,,,,,,,,,,,,,,,,,,,DRAC Inputs,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,DRAC Outputs\n";
         $output .= "\n";
 
-        foreach( drac_csv_outputs() as $t ) {
+        foreach (drac_csv_outputs() as $t) {
             $output .= $t . ',';
         }
         $output .= "\n";
@@ -100,103 +90,91 @@ class Drac {
         $drac_inputs = drac_inputs();
         $drac_outputs = drac_outputs();
 
-        foreach( drac_csv_outputs() as $t ) {
-            if( $t == "" ) {
-                $value = "";
+        foreach (drac_csv_outputs() as $t) {
+            if ($t === '') {
+                $value = '';
             } else {
-                $is_output = (strpos( $t, 'TI:', 0 ) === false);
-                if( $is_output ) {
-                    $value = $drac_outputs[$t]['name_ascii'];
-                } else {
-                    $value = $drac_inputs[$t]['name_ascii'];
-                }
+                $is_output = strpos($t, 'TI:', 0) === false;
+                $value = $is_output ? $drac_outputs[$t]['name_ascii'] : $drac_inputs[$t]['name_ascii'];
             }
             $output .= $value . ',';
         }
         $output .= "\n";
 
-        foreach( $this->data ?? [] as $input_row ) {
-            drac_clear_value_cache();
+        foreach ($this->data as $input_row) {
+            $computed = $this->_computeRow($input_row);
 
-            foreach( drac_csv_outputs() as $t ) {
-
-                if( $t == "" ) {
-                    $value = "";
+            foreach (drac_csv_outputs() as $t) {
+                if ($t === '') {
+                    $value = '';
                 } else {
-                    $is_output = (strpos( $t, 'TI:', 0 ) === false);
-
-                    $value = VALUE( $input_row, $t );
-
-                    // round values
-                    if( $is_output && (floatval( $value ) == $value) && ($value != 0) ) {
-                        $value = round( $value, 3 );
+                    $is_output = strpos($t, 'TI:', 0) === false;
+                    $value = $computed[$t];
+                    if ($is_output && (floatval($value) == $value) && ($value != 0)) {
+                        $value = round($value, 3);
                     }
                 }
-
                 $output .= $value . ',';
             }
-
             $output .= "\n";
         }
 
         return $output;
     }
 
-    private function validate_table_error_messages($text) {
+    public function outputFileName(): string {
+        $name = $this->data[0]['TI:1'] ?? '';
+        return str_replace(' ', '_', trim($name)) . '_' . time() . '_DRACv' . self::VERSION . '.csv';
+    }
+
+    private function _normalizeKeyedRow(array $row): array {
+        $normalized = [];
+        foreach (drac_inputs() as $key => $props) {
+            $val = isset($row[$key]) ? trim((string)$row[$key]) : 'X';
+            if ($val === '') { $val = 'X'; }
+            if ($props['type'] === 'float' && !valid_blank_input($props, $val)) {
+                $val = floatval($val);
+            }
+            $normalized[$key] = $val;
+        }
+        return $normalized;
+    }
+
+    private function _validateKeyedErrors(): string {
         if ($this->validationErrors !== null) {
             return $this->validationErrors;
         }
 
-        $errors = "";
-        if(empty($text)) { $errors .= "Data table must not be blank.\n"; }
+        $errors = '';
+        $n_cols = drac_input_columns_count();
 
-        $text = str_replace("\n\r", "\n", $text);
-        $text = preg_replace("/[ \t]+/", " ", $text);
-        $rows = explode("\n", $text);
-
-        $this->data = array();
-
-        for ($i = 0; $i < count($rows); $i++) {
-            $row = trim($rows[$i]);
-
-            $num_columns = drac_input_columns_count();
-
-            $cols = explode(" ", $row);
-            if(count($cols) != $num_columns) {
-                $errors .= "Row " . ($i + 1) . ": Expected " . $num_columns . " columns, found " . count($cols) . ".\n";
+        foreach ($this->data as $i => $row) {
+            $cols = [];
+            for ($j = 1; $j <= $n_cols; $j++) {
+                $cols[] = $row["TI:$j"];
             }
-
-            $data_row = array();
-
-            for ($j = 0; $j < min(count($cols), $num_columns); $j++) {
-                $col = trim($cols[$j]);
-
-                $ti = 'TI:' . ($j + 1);
-
-                $data_row[$ti] = $col;
-
-                $properites = $this->drac_inputs($ti);
-                $validate_func = $properites['validate'];
-                $custom_errors = "";
-
-                if( !valid_blank_input($properites, $col) && !$validate_func($cols[$j], $cols, $custom_errors) ) {
-                    $errors .= 'Row ' . ($i + 1) . ', Column ' . ($j + 1) . ' (' . $ti . ' ' . $properites['name'] . ') Found "' . $col . '": ' . $properites['description'] . " " . $custom_errors . "\n";
+            $this->rowFieldErrors[$i] = [];
+            foreach (drac_inputs() as $key => $props) {
+                $val = $row[$key];
+                $custom_errors = '';
+                if (!valid_blank_input($props, $val) && !($props['validate'])($val, $cols, $custom_errors)) {
+                    $msg = 'Found "' . $val . '": ' . $props['description'] . ($custom_errors !== '' ? ' ' . $custom_errors : '');
+                    $this->rowFieldErrors[$i][$key] = $msg;
+                    $errors .= 'Row ' . ($i + 1) . ', ' . $key . ' (' . $props['name'] . ') ' . $msg . "\n";
                 }
-
-                if( $properites['type'] == 'float' && !valid_blank_input($properites, $col) ) {
-                    $col = floatval($col);
-                }
-                $data_row[$ti] = $col;
             }
-
-            array_push( $this->data, $data_row );
         }
+
         $this->validationErrors = $errors;
         return $errors;
     }
 
-    private function drac_inputs($item) {
-        $inputs = drac_inputs();
-        return $inputs[$item];
+    private function _computeRow(array $input_row): array {
+        drac_clear_value_cache();
+        $row = $input_row;
+        foreach (drac_outputs() as $key => $_) {
+            $row[$key] = VALUE($input_row, $key);
+        }
+        return $row;
     }
 }

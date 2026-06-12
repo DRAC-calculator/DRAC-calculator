@@ -6,22 +6,22 @@
 
     define('DRAC_URL', '' );
 
-    global $drac_calc;
+    global $drac_form;
 
-    require_once __DIR__ . '/../calculator/drac.php';
+    require_once __DIR__ . '/drac_form.php';
 
     $current = empty($_GET['show']) ? '' : $_GET['show'];
     if( $current == 'calculator' ) {
 
         $drac_data = (empty($_POST["drac_data"]) ? array() : $_POST["drac_data"]);
-        $drac_calc = new Drac($drac_data);
+        $drac_form = new DracForm($drac_data);
 
-        if( $drac_calc->valid() ) {
+        if( $drac_form->valid() ) {
             header("Content-type: text/csv");
-            header("Content-Disposition: attachment; filename=" . $drac_calc->output_file_name);
+            header("Content-Disposition: attachment; filename=" . $drac_form->outputFileName());
             header("Pragma: no-cache");
             header("Expires: 0");
-            $output = $drac_calc->run_calc();
+            $output = $drac_form->toCsv();
             echo $output;
             exit;
         }

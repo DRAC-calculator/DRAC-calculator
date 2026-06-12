@@ -44,9 +44,92 @@ composer install
 Run the tests:
 
 ```bash
-./vendor/bin/phpunit test/drac_test.php      # calculator unit tests
-./vendor/bin/phpunit test/helpers_test.php   # validation helper tests
+./vendor/bin/phpunit test/drac_test.php         # Drac library unit tests
+./vendor/bin/phpunit test/drac_form_test.php    # DracForm wrapper tests
+./vendor/bin/phpunit test/helpers_test.php      # validation helper tests
 ./vendor/bin/phpunit test/integration_test.php  # HTTP integration tests (requires php -S)
+```
+
+## DRAC Calculator As A Library
+
+The calculator can be used as a PHP library without the web layer. Include `calculator/drac.php` and construct a `Drac` instance directly with a keyed array.
+
+### Version
+
+```php
+require_once 'calculator/drac.php';
+echo Drac::VERSION; // e.g. "1.3"
+```
+
+### Single sample
+
+Keys are `TI:1` through `TI:53` (see `calculator/inputs.php` for the full list and valid values). Optional values can be omitted.
+
+```php
+$calc = new Drac([
+    'TI:1'  => 'MyProject',
+    'TI:2'  => 'Sample-1',
+    'TI:3'  => 'Q',
+    'TI:4'  => 'Cresswelletal2018',
+    'TI:5'  => '3.4',   'TI:6'  => '0.51',
+    'TI:7'  => '14.47', 'TI:8'  => '1.69',
+    'TI:9'  => '1.2',   'TI:10' => '0.14',
+    'TI:11' => '0',     'TI:12' => '0',
+    'TI:13' => 'N',
+    'TI:31' => 'N',
+    'TI:32' => '90',   'TI:33' => '125',
+    'TI:34' => 'Brennanetal1991',
+    'TI:35' => 'Guerinetal2012-Q',
+    'TI:36' => '8',    'TI:37' => '10',
+    'TI:38' => 'Bell1979',
+    'TI:39' => '0',    'TI:40' => '0',
+    'TI:41' => '5',    'TI:42' => '2',
+    'TI:43' => '2.22', 'TI:44' => '0.05',
+    'TI:45' => '1.8',  'TI:46' => '0.1',
+    'TI:47' => '30',   'TI:48' => '70',  'TI:49' => '150',
+    'TI:52' => '20',  'TI:53' => '0.2',
+]);
+
+if (!$calc->valid()) {
+    echo "Invalid inputs\n";
+}
+
+$result = $calc->calculate();
+// Single-row input returns a flat associative array of all TI:N inputs and TO:XX outputs.
+
+printf("Environmental dose rate: %.3f ± %.3f Gy/ka\n",
+    $result['TO:GM'],   // Environmental Dose Rate
+    $result['TO:GN']    // errEnvironmental Dose Rate
+);
+printf("Age: %.3f ± %.3f ka\n",
+    $result['TO:GO'],   // Age
+    $result['TO:GP']    // errAge
+);
+```
+
+`calculate()` returns full-precision floats. `toCsv()` rounds outputs to 3 decimal places and prepends the citation header required for published use.
+
+#### Handling invalid inputs
+
+`valid()` validates all fields. If any fail, `errors()` returns `true` and `calculate()` / `toCsv()` will throw a `RuntimeException`. Call `fieldErrors()` to get a structured map of which fields failed and why.
+
+```php
+$calc = new Drac(['TI:1' => 'MyProject', 'TI:3' => 'INVALID', /* ... */]);
+
+if ($calc->errors()) {
+    $errors = $calc->fieldErrors();
+    // e.g. ['TI:3' => 'Found "INVALID": The mineral used for dating must be ...']
+    foreach ($errors as $field => $message) {
+        echo "$field: $message\n";
+    }
+}
+```
+
+
+### Generating citation-wrapped CSV
+
+```php
+$csv = $calc->toCsv(); // string suitable for file_put_contents or echo with CSV headers
 ```
 
 ## License
