@@ -8,13 +8,18 @@ function drac_input_columns_count() {
 }
 
 function drac_inputs() {
+    static $defs = null;
+    if ($defs !== null) {
+        return $defs;
+    }
+
     // Common descriptions used across multiple items
     $external = 'Radionuclide concentrations in parts per million for Uranium, Thorium and Rubidium and % for Potassium. Inputs must be 0 or positive and should not be left blank.';
     $internal = 'Internal radionuclide concentrations in parts per million for Uranium, Thorium and Rubidium and % for Potassium. Inputs must be 0 or positive and should not be left blank.';
     $user_external = 'Users may input directly measured values for external alpha, beta and gamma dose rates (in Gy.ka-1). Any positive inputs in these fields will override dose rates calculated from radionuclide concentrations. Inputs should be 0 or positive and should not be left blank.';
     $user_internal = 'Users may input an internal dose rate (either alpha, beta or the sum of the two; in Gy.ka-1). DRAC will assume that this value has already been corrected for attenuation. Inputs in this field will override dose rates calculated from radionuclide concentrations. Inputs should be 0 or positive and not left blank.';
 
-    return array(
+    return $defs = array(
         'TI:1' => array(
             'name' => 'Project ID',
             'name_ascii' => 'Project ID',

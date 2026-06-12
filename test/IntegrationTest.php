@@ -1,9 +1,9 @@
 <?php
-// run:   phpunit test/integration_test.php
+namespace Drac\Calculator\Tests;
 
 use PHPUnit\Framework\TestCase;
 
-class integration_test extends TestCase {
+class IntegrationTest extends TestCase {
 
     private static int $port = 8799;
     private static mixed $server_proc = null;

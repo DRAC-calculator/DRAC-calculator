@@ -1,10 +1,11 @@
 <?php
-require_once __DIR__ . '/../main/drac_form.php';
+namespace Drac\Calculator\Tests;
 
 use PHPUnit\Framework\TestCase;
 use Drac\Calculator\Drac;
+use DracForm;
 
-class drac_form_test extends TestCase {
+class DracFormTest extends TestCase {
 
     private function initDrac($params = []) {
         $defaults = [

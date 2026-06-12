@@ -4,6 +4,11 @@ namespace Drac\Calculator;
 require_once __DIR__ . '/output_helpers.php';
 
 function drac_outputs() {
+    static $defs = null;
+    if ($defs !== null) {
+        return $defs;
+    }
+
     // Common descriptions used across multiple items
     $external = 'The calculated external dose rates from the provided radionuclide concentrations and selected conversion factors.';
     $internal = 'The calculated internal dose rates from the provided radionuclide concentrations and selected conversion factors.';
@@ -28,7 +33,7 @@ function drac_outputs() {
     $internal_dry = 'The attenuated internal alpha and beta dose rates.';
     $drac_int_ext_dose_rate = 'DRAC calculated external and internal dose rates.';
 
-    return array(
+    return $defs = array(
         'TO:A' =>  array(
             'name' => 'External U Ḋα (Gy.ka-1)',
             'name_ascii' => 'External U alphadoserate (Gy.ka-1)',

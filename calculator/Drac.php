@@ -16,18 +16,24 @@ class Drac {
 
     public function __construct(array $input) {
         if (isset($input['TI:1'])) {
-            $this->data = [$this->_normalizeKeyedRow($input)];
-        } else {
-            $this->data = array_map([$this, '_normalizeKeyedRow'], array_values($input));
+            $input = [$input];
         }
+        $this->data = array_values($input);
+        $this->data = array_map([$this, '_normalizeRow'], $this->data);
+        $this->_validateInput();
     }
 
     public static function inputs(): array {
         return drac_inputs();
     }
 
+    public static function outputs(): array {
+        return drac_outputs();
+    }
+
+
     public function valid(): bool {
-        return $this->_validateKeyedErrors() === '';
+        return $this->_validateInput() === '';
     }
 
     public function errors(): bool {
@@ -35,14 +41,14 @@ class Drac {
     }
 
     public function fieldErrors(): array {
-        $this->_validateKeyedErrors();
+        $this->_validateInput();
         return count($this->rowFieldErrors) === 1
             ? $this->rowFieldErrors[0]
             : $this->rowFieldErrors;
     }
 
     public function fieldHasErrors(string $field): bool {
-        $this->_validateKeyedErrors();
+        $this->_validateInput();
         foreach ($this->rowFieldErrors as $rowErrors) {
             if (isset($rowErrors[$field])) return true;
         }
@@ -50,7 +56,7 @@ class Drac {
     }
 
     public function validationErrorDetails(): string {
-        return $this->_validateKeyedErrors();
+        return $this->_validateInput();
     }
 
     public function calculate(): array {
@@ -89,8 +95,8 @@ class Drac {
         }
         $output .= "\n";
 
-        $drac_inputs = drac_inputs();
-        $drac_outputs = drac_outputs();
+        $drac_inputs = self::inputs();
+        $drac_outputs = self::outputs();
 
         foreach (drac_csv_outputs() as $t) {
             if ($t === '') {
@@ -129,20 +135,17 @@ class Drac {
         return str_replace(' ', '_', trim($name)) . '_' . time() . '_DRACv' . self::VERSION . '.csv';
     }
 
-    private function _normalizeKeyedRow(array $row): array {
+    private function _normalizeRow(array $row): array {
         $normalized = [];
-        foreach (drac_inputs() as $key => $props) {
+        foreach (self::inputs() as $key => $props) {
             $val = isset($row[$key]) ? trim((string)$row[$key]) : 'X';
             if ($val === '') { $val = 'X'; }
-            if ($props['type'] === 'float' && !valid_blank_input($props, $val)) {
-                $val = floatval($val);
-            }
             $normalized[$key] = $val;
         }
         return $normalized;
     }
 
-    private function _validateKeyedErrors(): string {
+    private function _validateInput(): string {
         if ($this->validationErrors !== null) {
             return $this->validationErrors;
         }
@@ -156,7 +159,7 @@ class Drac {
                 $cols[] = $row["TI:$j"];
             }
             $this->rowFieldErrors[$i] = [];
-            foreach (drac_inputs() as $key => $props) {
+            foreach (self::inputs() as $key => $props) {
                 $val = $row[$key];
                 $custom_errors = '';
                 if (!valid_blank_input($props, $val) && !($props['validate'])($val, $cols, $custom_errors)) {
@@ -171,11 +174,24 @@ class Drac {
         return $errors;
     }
 
+    private function _convertFloatsRow(array $row): array {
+        foreach (self::inputs() as $key => $props) {
+            if ($props['type'] === 'float' && !valid_blank_input($props, $row[$key])) {
+                $row[$key] = floatval($row[$key]);
+            }
+        }
+        return $row;
+    }
+
     private function _computeRow(array $input_row): array {
-        drac_clear_value_cache();
-        $row = $input_row;
-        foreach (drac_outputs() as $key => $_) {
-            $row[$key] = VALUE($input_row, $key);
+        $inputs = $this->_convertFloatsRow($input_row);
+        $row = $inputs;
+        foreach (self::outputs() as $key => $_) {
+            try {
+                $row[$key] = VALUE($inputs, $key);
+            } catch (\DivisionByZeroError | \TypeError $e) {
+                throw new \RuntimeException("Failed to compute output $key: " . $e->getMessage(), 0, $e);
+            }
         }
         return $row;
     }

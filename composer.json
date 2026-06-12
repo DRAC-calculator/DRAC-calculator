@@ -8,6 +8,15 @@
             "Drac\\Calculator\\": "calculator/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Drac\\Calculator\\Tests\\": "test/"
+        },
+        "files": [
+            "calculator/validation_helpers.php",
+            "main/drac_form.php"
+        ]
+    },
     "require": {
         "php": ">=8.0"
     },

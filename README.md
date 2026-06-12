@@ -44,10 +44,11 @@ composer install
 Run the tests:
 
 ```bash
-./vendor/bin/phpunit test/drac_test.php         # Drac library unit tests
-./vendor/bin/phpunit test/drac_form_test.php    # DracForm wrapper tests
-./vendor/bin/phpunit test/helpers_test.php      # validation helper tests
-./vendor/bin/phpunit test/integration_test.php  # HTTP integration tests (requires php -S)
+./vendor/bin/phpunit                            # full suite (or: composer test)
+./vendor/bin/phpunit test/DracTest.php          # Drac library unit tests
+./vendor/bin/phpunit test/DracFormTest.php      # DracForm wrapper tests
+./vendor/bin/phpunit test/HelpersTest.php       # validation helper tests
+./vendor/bin/phpunit test/IntegrationTest.php   # HTTP integration tests (requires php -S)
 ```
 
 ## DRAC Calculator As A Library

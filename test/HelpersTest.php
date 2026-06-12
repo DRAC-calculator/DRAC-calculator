@@ -1,13 +1,11 @@
 <?php
-// run:   phpunit test/helpers_test.php
-
-require_once __DIR__ . '/../calculator/validation_helpers.php';
+namespace Drac\Calculator\Tests;
 
 use function Drac\Calculator\{within_range, greater_than, greater_or_equal_to, less_than, valid_blank, valid_blank_input};
 
 use PHPUnit\Framework\TestCase;
 
-class helpers_test extends TestCase {
+class HelpersTest extends TestCase {
 
      public function test__within_range() {
         $this->assertEquals(within_range(0, 10, '0'), true);

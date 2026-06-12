@@ -114,28 +114,14 @@ function factor_sqrt_sum_sqr_ratio( $inputs, $a, $b, $c, $d, $e ) {
     }
 }
 
-global $drac_values_cache;
-
-function drac_clear_value_cache() {
-    global $drac_values_cache;
-    $drac_values_cache = array();
-}
-drac_clear_value_cache();
-
 function VALUE( $inputs, $item ) {
-    global $drac_values_cache;
-    if( !array_key_exists( $item, $drac_values_cache ) ) {
-        $is_output = (strpos( $item, 'TI:', 0 ) === false);
-        if( $is_output ) {
-            $drac_outputs = drac_outputs();
-            $f = $drac_outputs[$item]['value'];
-            $value = $f( $inputs );
-        } else {
-            $value = $inputs[$item];
-        }
-        $drac_values_cache[$item] = $value;
+    $is_output = (strpos( $item, 'TI:', 0 ) === false);
+    if( $is_output ) {
+        $drac_outputs = drac_outputs();
+        $f = $drac_outputs[$item]['value'];
+        return $f( $inputs );
     }
-    return $drac_values_cache[$item];
+    return $inputs[$item];
 }
 
 function VALUES() {

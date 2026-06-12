@@ -1,10 +1,10 @@
 <?php
-require_once __DIR__ . '/../calculator/Drac.php';
+namespace Drac\Calculator\Tests;
 
 use PHPUnit\Framework\TestCase;
 use Drac\Calculator\Drac;
 
-class drac_test extends TestCase {
+class DracTest extends TestCase {
 
     private function keyedRow(): array {
         return [
@@ -89,6 +89,22 @@ class drac_test extends TestCase {
         $this->assertSame('X', $result['TI:51']);
     }
 
+    public function testMalformedNumberIsRejected() {
+        $row = $this->keyedRow();
+        $row['TI:5'] = '12abc';
+        $drac = new Drac($row);
+        $this->assertFalse($drac->valid());
+        $this->assertTrue($drac->fieldHasErrors('TI:5'));
+    }
+
+    public function testBlankRequiredFloatIsRejected() {
+        $row = $this->keyedRow();
+        $row['TI:41'] = 'X';
+        $drac = new Drac($row);
+        $this->assertFalse($drac->valid());
+        $this->assertTrue($drac->fieldHasErrors('TI:41'));
+    }
+
     public function testToCsvThrowsWhenNotValid() {
         $this->expectException(\RuntimeException::class);
         $row = $this->keyedRow();
@@ -120,6 +136,24 @@ class drac_test extends TestCase {
         $this->assertArrayHasKey('TO:GP', $result[0]);
     }
 
+    public function testCalculateWrapsComputeErrorsWithOutputKey() {
+        $row = $this->keyedRow();
+        foreach (['TI:5', 'TI:6', 'TI:7', 'TI:8', 'TI:9', 'TI:10'] as $key) {
+            $row[$key] = '0';
+        }
+        $row['TI:50'] = '0';  // user cosmic dose rate overrides the calculated one
+        $row['TI:51'] = '0';
+        $drac = new Drac($row);
+        $this->assertTrue($drac->valid());
+        try {
+            $drac->calculate();
+            $this->fail('Expected RuntimeException for zero dose rate');
+        } catch (\RuntimeException $e) {
+            $this->assertStringContainsString('TO:GO', $e->getMessage());
+            $this->assertInstanceOf(\DivisionByZeroError::class, $e->getPrevious());
+        }
+    }
+
     public function testCalculateAge() {
         $result = (new Drac($this->keyedRow()))->calculate();
         $this->assertEqualsWithDelta(6.421, round($result['TO:GO'], 3), 1e-9);
@@ -133,17 +167,6 @@ class drac_test extends TestCase {
         $this->assertArrayHasKey('name', $inputs['TI:3']);
         $this->assertArrayHasKey('description', $inputs['TI:3']);
         $this->assertArrayHasKey('validate', $inputs['TI:3']);
-    }
-
-    public function testValidationResultIsCached() {
-        $calc = new Drac($this->keyedRow());
-        $prop = new \ReflectionProperty(Drac::class, 'validationErrors');
-
-        $this->assertNull($prop->getValue($calc));
-        $calc->valid();
-        $this->assertSame('', $prop->getValue($calc));
-        $calc->valid();
-        $this->assertSame('', $prop->getValue($calc));
     }
 
     public function testFieldErrorsEmptyWhenValid() {
