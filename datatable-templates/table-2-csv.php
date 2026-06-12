@@ -1,5 +1,5 @@
 <?php 
-	$drac_LT2 = LookupTables::lt2();
+	$drac_LT2 = \Drac\Calculator\LookupTables::lt2();
 	$sets = array_keys( $drac_LT2 );
 	$params = array_keys( $drac_LT2[$sets[0]] );
 	$grains = array_keys( $drac_LT2[$sets[0]][$params[0]] );

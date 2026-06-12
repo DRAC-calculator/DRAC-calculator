@@ -1,8 +1,13 @@
 {
-    "name": "aber/drac-calculator",
+    "name": "drac-calculator/drac-calculator",
     "description": "DRAC Dose Rate and Age Calculator for trapped charge dating",
-    "type": "project",
+    "type": "library",
     "license": "GPL-3.0-or-later",
+    "autoload": {
+        "psr-4": {
+            "Drac\\Calculator\\": "calculator/"
+        }
+    },
     "require": {
         "php": ">=8.0"
     },

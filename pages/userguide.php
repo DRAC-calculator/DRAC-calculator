@@ -19,7 +19,7 @@
 </ol>
 </p>
 
-<p>Please ensure you cite the use of DRAC in your work, published or otherwise. Please cite the website name and version (e.g. DRAC v<?php echo Drac::VERSION ?>) and the accompanying journal article: Durcan, J.A., King, G.E., Duller, G.A.T. (2015). DRAC: Dose rate and age calculation for trapped charge dating. Quaternary Geochronology, 28, 54-61. [<a href="<?php echo DRAC_URL ?>downloads/Durcan_et_al.,_2015. DRAC_dose_rate_and_age_calculator_for_trapped_charge_dating._Quaternary_Geochronology_28,_54-61.pdf">Download Paper</a>]</p>
+<p>Please ensure you cite the use of DRAC in your work, published or otherwise. Please cite the website name and version (e.g. DRAC v<?php echo \Drac\Calculator\Drac::VERSION ?>) and the accompanying journal article: Durcan, J.A., King, G.E., Duller, G.A.T. (2015). DRAC: Dose rate and age calculation for trapped charge dating. Quaternary Geochronology, 28, 54-61. [<a href="<?php echo DRAC_URL ?>downloads/Durcan_et_al.,_2015. DRAC_dose_rate_and_age_calculator_for_trapped_charge_dating._Quaternary_Geochronology_28,_54-61.pdf">Download Paper</a>]</p>
 
 <h3 id="drac_downloads">Downloads</h3>
 <ul>
@@ -40,7 +40,7 @@
 		<th style="width: 50%;">Description</th>
 	</tr>
 	<?php
-		$inputs = drac_inputs();
+		$inputs = \Drac\Calculator\drac_inputs();
 		$keys = array_keys( $inputs );
 		$desc_rowspan_count = 1;
 		for($i=0; $i < count($inputs); $i++) {
@@ -76,7 +76,7 @@
 		<th style="width: 50%;">Description</th>
 	</tr>
 	<?php
-		$outputs = drac_outputs();
+		$outputs = \Drac\Calculator\drac_outputs();
 		$keys = array_keys( $outputs );
 		$desc_rowspan_count = 1;
 		for($i=0; $i < count($outputs); $i++) {

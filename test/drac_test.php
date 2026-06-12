@@ -1,7 +1,8 @@
 <?php
-require_once __DIR__ . '/../calculator/drac.php';
+require_once __DIR__ . '/../calculator/Drac.php';
 
 use PHPUnit\Framework\TestCase;
+use Drac\Calculator\Drac;
 
 class drac_test extends TestCase {
 

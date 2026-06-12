@@ -1,4 +1,6 @@
 <?php
+namespace Drac\Calculator;
+
 require_once __DIR__ . '/validation_helpers.php';
 
 function drac_input_columns_count() {

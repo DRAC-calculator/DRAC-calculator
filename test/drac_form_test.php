@@ -2,6 +2,7 @@
 require_once __DIR__ . '/../main/drac_form.php';
 
 use PHPUnit\Framework\TestCase;
+use Drac\Calculator\Drac;
 
 class drac_form_test extends TestCase {
 

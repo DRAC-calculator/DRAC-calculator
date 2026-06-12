@@ -1,4 +1,6 @@
 <?php
+namespace Drac\Calculator;
+
 require_once __DIR__ . '/output_helpers.php';
 
 function drac_outputs() {

@@ -1,5 +1,7 @@
 <?php
-require_once __DIR__ . '/lookup_tables.php';
+namespace Drac\Calculator;
+
+require_once __DIR__ . '/LookupTables.php';
 
 function within_range($start, $end, $val) {
 	// if( empty($val) ) {

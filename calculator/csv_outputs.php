@@ -1,4 +1,6 @@
 <?php
+namespace Drac\Calculator;
+
 
 function drac_csv_outputs() {
     return array(

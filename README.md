@@ -17,8 +17,8 @@ Directory structure:
 Calculator files include:
 * `/calculator/inputs.php` - Input descriptions and validations
 * `/calculator/outputs.php` - Output descriptions and calculations
-* `/calculator/drac.php` - Calculator setup code
-* `/calculator/lookup_tables.php` - Lookup table data
+* `/calculator/Drac.php` - Calculator setup code
+* `/calculator/LookupTables.php` - Lookup table data
 
 
 ## Running locally
@@ -52,12 +52,40 @@ Run the tests:
 
 ## DRAC Calculator As A Library
 
-The calculator can be used as a PHP library without the web layer. Include `calculator/drac.php` and construct a `Drac` instance directly with a keyed array.
+The calculator can be used as a PHP library without the web layer. The library lives in the `Drac\Calculator` namespace and is autoloadable via Composer (PSR-4).
+
+### Installing with Composer
+
+The package is not published on Packagist, so add the [GitHub repository](https://github.com/DRAC-calculator/DRAC-calculator) to your project's `composer.json` and require the `dev` branch:
+
+```json
+{
+    "repositories": [
+        { "type": "vcs", "url": "https://github.com/DRAC-calculator/DRAC-calculator" }
+    ],
+    "require": {
+        "drac-calculator/drac-calculator": "dev-dev"
+    }
+}
+```
+
+Then use the class via the autoloader:
+
+```php
+require_once 'vendor/autoload.php';
+use Drac\Calculator\Drac;
+```
+
+Alternatively, without Composer, include `calculator/Drac.php` directly:
+
+```php
+require_once 'calculator/Drac.php';
+use Drac\Calculator\Drac;
+```
 
 ### Version
 
 ```php
-require_once 'calculator/drac.php';
 echo Drac::VERSION; // e.g. "1.3"
 ```
 

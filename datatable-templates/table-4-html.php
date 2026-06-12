@@ -2,7 +2,7 @@
 <h3 id="table4">4) Etch depth attenuation factors</h3>
 <table>
 	<?php
-		$drac_LT4 = LookupTables::lt4();
+		$drac_LT4 = \Drac\Calculator\LookupTables::lt4();
 		$sets = array_keys( $drac_LT4 );
 		$params = array_keys( $drac_LT4[$sets[0]] );
 		$etchs = array_keys( $drac_LT4[$sets[0]][$params[0]] );

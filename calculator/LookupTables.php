@@ -1,4 +1,6 @@
 <?php
+namespace Drac\Calculator;
+
 
 class LookupTables {
     private static ?array $lt1 = null;

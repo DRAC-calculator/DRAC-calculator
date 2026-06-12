@@ -1,4 +1,6 @@
 <?php
+namespace Drac\Calculator;
+
 require_once __DIR__ . '/version.php';
 require_once __DIR__ . '/inputs.php';
 require_once __DIR__ . '/outputs.php';

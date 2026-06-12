@@ -3,6 +3,8 @@
 
 require_once __DIR__ . '/../calculator/validation_helpers.php';
 
+use function Drac\Calculator\{within_range, greater_than, greater_or_equal_to, less_than, valid_blank, valid_blank_input};
+
 use PHPUnit\Framework\TestCase;
 
 class helpers_test extends TestCase {

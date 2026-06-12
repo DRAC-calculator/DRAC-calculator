@@ -1,5 +1,9 @@
 <?php
-require_once __DIR__ . '/../calculator/drac.php';
+require_once __DIR__ . '/../calculator/Drac.php';
+
+use Drac\Calculator\Drac;
+use function Drac\Calculator\drac_inputs;
+use function Drac\Calculator\drac_input_columns_count;
 
 class DracForm {
 

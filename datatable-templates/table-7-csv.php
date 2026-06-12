@@ -1,5 +1,5 @@
 <?php
-	$drac_LT7 = LookupTables::lt7();
+	$drac_LT7 = \Drac\Calculator\LookupTables::lt7();
 
 	$sets = array_keys( $drac_LT7 );
 	$params = array_keys( $drac_LT7[$sets[0]] );

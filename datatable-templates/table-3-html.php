@@ -2,7 +2,7 @@
 <h3 id="table3">3) Grain size attenuation factors - beta</h3>
 <table>
 	<?php
-		$drac_LT3 = LookupTables::lt3();
+		$drac_LT3 = \Drac\Calculator\LookupTables::lt3();
 		$sets = array_keys( $drac_LT3 );
 		$params = array_keys( $drac_LT3[$sets[0]] );
 		$grains = array_keys( $drac_LT3[$sets[0]][$params[0]] );
